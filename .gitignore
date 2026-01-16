@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+engine/venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime
+*.log
+logs/
+cache/
+*.cache
+
+# Secrets
+.env
+*.pem
+*.key
+credentials.json
+
+# Local overrides
+local/
+
+# User data (this should be in your personal layer, not here)
+learning/*.yaml
+memory/
