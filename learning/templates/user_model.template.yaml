@@ -1,0 +1,31 @@
+# User Model - [User Name]
+# Observations learned through interaction
+# AI can write to this file autonomously
+#
+# Confidence levels:
+#   high: Explicit statement or correction from user
+#   medium: Inferred from multiple observations
+#   low: Single observation, needs validation
+#
+# Sources:
+#   explicit: User directly stated this
+#   correction: User corrected AI behavior
+#   observed: AI noticed this pattern
+#   documented: Already in CLAUDE.md (migrated)
+
+observations:
+  # Example entry (remove when adding real observations):
+  # - pattern: "Prefers concise responses with expandable depth"
+  #   learned: 2025-01-01
+  #   confidence: high
+  #   source: documented
+  #   context: communication
+
+metadata:
+  created: YYYY-MM-DD
+  last_updated: YYYY-MM-DD
+  total_observations: 0
+  by_confidence:
+    high: 0
+    medium: 0
+    low: 0

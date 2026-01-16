@@ -2,9 +2,21 @@
 
 Structure for your AI to learn and adapt to you over time.
 
-## Philosophy
+## Architecture: Framework vs. Data
 
-Your AI assistant should get better at helping you the more you work together. This framework provides the structure for that learning.
+- **Framework** (this directory): Templates, schemas, documentation
+- **Data** (your personal layer): Actual learning data
+
+Learning data lives in your personal data location (e.g., `~/ai-data/learning/`).
+
+## Learning File Types
+
+| File | Purpose | Who Writes |
+|------|---------|------------|
+| `user_model.yaml` | Observations about user patterns/preferences | AI (autonomous) |
+| `approach_registry/*.yaml` | What works for what problem types | AI + Human |
+| `pending_learnings.yaml` | Observations awaiting review | AI (autonomous) |
+| `failures/*.md` | Post-mortems on significant failures | AI (autonomous) |
 
 ## Components
 
@@ -37,17 +49,16 @@ Post-mortems to prevent repeating mistakes:
 ## How It Works
 
 1. **Framework provides templates** (in `learning/templates/`)
-2. **Your data lives in your personal layer** (`~/ai-data/learning/`)
+2. **Your data lives in your personal layer** (e.g., `~/ai-data/learning/`)
 3. **AI writes observations autonomously** during sessions
 4. **You review periodically** and promote learnings to CLAUDE.md
 
 ## Templates
 
 See `templates/` for starter files:
-- `user_model_template.yaml`
-- `approach_template.yaml`
-- `failure_template.yaml`
-- `pending_learning_template.yaml`
+- `user_model.template.yaml`
+- `approach_entry.template.yaml`
+- `failure_postmortem.template.md`
 
 Copy these to your personal layer and let your AI fill them in over time.
 

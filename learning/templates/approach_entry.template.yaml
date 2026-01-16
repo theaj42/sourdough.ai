@@ -1,0 +1,30 @@
+# Approach: [Descriptive Name]
+# What works for [problem type]
+
+name: "approach-name-kebab-case"
+problem_type: "category of problem this addresses"
+learned: YYYY-MM-DD
+confidence: high|medium|low
+
+description: |
+  Multi-line description of the approach
+  and when to use it.
+
+steps:
+  - "Step 1"
+  - "Step 2"
+  - "Step 3"
+
+when_to_use:
+  - "Condition 1"
+  - "Condition 2"
+
+when_not_to_use:
+  - "Condition where this approach doesn't work"
+
+examples:
+  - situation: "Example situation"
+    outcome: "What happened when approach was applied"
+
+related_approaches:
+  - "other-approach-name"

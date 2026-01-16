@@ -1,0 +1,16 @@
+# Pending Learnings
+# Observations that might warrant CLAUDE.md updates
+# Reviewed periodically by user
+
+pending:
+  # Example entry (remove when adding real observations):
+  # - observation: "User prefers X over Y"
+  #   date: 2025-01-01
+  #   context: "Noticed during code review session"
+  #   potential_action: "Add to CLAUDE.md communication preferences"
+  #   priority: medium
+
+metadata:
+  created: YYYY-MM-DD
+  last_updated: YYYY-MM-DD
+  total_pending: 0
