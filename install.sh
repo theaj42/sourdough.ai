@@ -48,26 +48,109 @@ mkdir -p "${DATA_DIR}/cache"
 if [[ ! -f "${DATA_DIR}/CLAUDE.md" ]]; then
     echo "Creating starter CLAUDE.md..."
     cat > "${DATA_DIR}/CLAUDE.md" << 'EOF'
-# My AI Assistant Configuration
+# Claude Code Configuration
 
-This file contains your personal instructions for Claude Code.
-
-## About Me
-
-<!-- Add context about yourself, your work, your preferences -->
-
-## Working Preferences
-
-<!-- How you like to work with your AI assistant -->
-
-## Current Focus
-
-<!-- What you're working on right now -->
+Personal instructions for your AI assistant. Claude Code reads this file at session start.
 
 ---
 
-*This file is loaded by Claude Code at session start.*
-*Customize it to make your AI assistant truly yours.*
+## About Me
+
+<!-- Delete the examples and add your own context -->
+
+I am a [your role] working on [your domain].
+
+**Technical background**: [Your experience level and areas of expertise]
+
+**Current projects**: [What you're actively working on]
+
+---
+
+## Working Preferences
+
+### Communication Style
+- Be concise by default; I'll ask if I want more detail
+- Skip excessive enthusiasm - be direct and genuine
+- Push back if my approach seems wrong
+
+### Autonomy Level
+- **Routine tasks**: Decide and implement, explain after
+- **Significant changes**: Ask before proceeding
+- Make commits at logical breakpoints without asking
+
+### Error Handling
+- Try 2-3 fixes before reporting an error to me
+- You're likely better at debugging than I am
+
+### File Operations
+- Prefer editing existing files over creating new ones
+- Always read a file before modifying it
+- Don't create documentation unless I ask for it
+
+---
+
+## Session Logging
+
+Log sessions to track what we accomplish across conversations.
+
+**Location**: `~/ai-data/logs/sessions/YYYY-MM-DD.md`
+
+At session end or natural breakpoints, update today's log with:
+- What was accomplished
+- Decisions made
+- Files created/modified
+- Next steps
+
+See the session logging guide: `~/sourdough.ai/docs/session-logging.md`
+
+---
+
+## Learning
+
+As we work together, capture observations about my patterns and preferences.
+
+**User model**: `~/ai-data/learning/user_model.yaml`
+- Write observations autonomously
+- Note my corrections and stated preferences
+
+**Approach registry**: `~/ai-data/learning/approach_registry/`
+- Document what works for different problem types
+
+See templates in `~/sourdough.ai/learning/templates/`
+
+---
+
+## Current Focus
+
+<!-- Update this section regularly with what you're working on -->
+
+**This week**:
+- [ ] Task 1
+- [ ] Task 2
+
+**Active projects**:
+- Project A: Brief status
+- Project B: Brief status
+
+---
+
+## Custom Instructions
+
+<!-- Add any specific instructions for your workflow -->
+
+### Tools I Use
+- [List your common tools, languages, frameworks]
+
+### Conventions
+- [Any coding conventions, naming patterns, etc.]
+
+### Off-Limits
+- [Anything Claude should avoid doing]
+
+---
+
+*Customize this file to make your AI assistant truly yours.*
+*The more context you provide, the better it can help.*
 EOF
 fi
 

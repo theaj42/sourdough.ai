@@ -5,6 +5,7 @@ Guides for using and extending sourdough.ai.
 ## Contents
 
 - **[getting-started.md](getting-started.md)** - Quick start guide
+- **[session-logging.md](session-logging.md)** - Maintain continuity across conversations
 - **[resources.md](resources.md)** - Curated learning resources
 - **architecture.md** - How the system works (coming soon)
 - **customization.md** - Making it yours (coming soon)
