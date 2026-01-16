@@ -1,0 +1,27 @@
+# sourdough.ai engine dependencies
+# Install with: pip install -r requirements.txt
+
+# Core AI/LLM
+anthropic>=0.30.0          # Claude API client
+openai>=1.0.0              # OpenAI API (used for embeddings)
+
+# Memory/Vector Store
+chromadb>=0.4.0            # Vector database for semantic memory
+
+# Data Processing
+pyyaml>=6.0                # YAML config files
+python-dotenv>=1.0.0       # Environment variable management
+pydantic>=2.0              # Data validation
+
+# Web/Content
+requests>=2.28.0           # HTTP client
+beautifulsoup4>=4.12.0     # HTML parsing
+feedparser>=6.0.0          # RSS feed parsing
+
+# CLI/Output
+rich>=13.0.0               # Rich terminal output
+typer>=0.9.0               # CLI framework (optional)
+
+# Utilities
+tenacity>=8.0.0            # Retry logic
+python-dateutil>=2.8.0     # Date parsing
