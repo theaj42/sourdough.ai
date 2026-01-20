@@ -10,12 +10,22 @@ A skill is a structured prompt that teaches Claude how to perform a specific tas
 
 ```
 skills/
+├── start/              # Session start - load context from previous sessions
+├── update/             # Session update - save work for next time
 ├── examples/           # Example skills to learn from
-├── fabric/             # Fabric pattern integrations
-├── content-creation/   # Blog post, video production workflows
-├── news-curator/       # News fetching and scoring
-└── self-improving-ai/  # System self-improvement patterns
+└── fabric/             # Fabric pattern integrations
 ```
+
+## Core Skills
+
+These two skills implement the memory system - use them regularly:
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| **start** | `/start` | Load context from recent sessions at the beginning of work |
+| **update** | `/update` | Save what you worked on at the end of a session |
+
+The memory loop: `/start` → work → `/update` → next session → `/start` → ...
 
 ## Creating a Skill
 

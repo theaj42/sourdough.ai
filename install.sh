@@ -166,7 +166,28 @@ if [[ ! -d "${FRAMEWORK_DIR}/engine/venv" ]]; then
     deactivate
 fi
 
-# Create symlinks for skills (optional)
+# Set up skill symlinks for Claude Code
+echo "Setting up Claude Code skills..."
+mkdir -p "${HOME}/.claude/skills"
+for skill_dir in "${FRAMEWORK_DIR}/skills"/*/; do
+    skill_name=$(basename "$skill_dir")
+    if [[ -f "${skill_dir}/SKILL.md" ]] && [[ ! -e "${HOME}/.claude/skills/${skill_name}" ]]; then
+        ln -sf "$skill_dir" "${HOME}/.claude/skills/${skill_name}"
+        echo "  Linked skill: ${skill_name}"
+    fi
+done
+
+# Set up skill symlinks for Gemini CLI
+echo "Setting up Gemini CLI skills..."
+mkdir -p "${HOME}/.gemini/skills"
+for skill_dir in "${FRAMEWORK_DIR}/skills"/*/; do
+    skill_name=$(basename "$skill_dir")
+    if [[ -f "${skill_dir}/SKILL.md" ]] && [[ ! -e "${HOME}/.gemini/skills/${skill_name}" ]]; then
+        ln -sf "$skill_dir" "${HOME}/.gemini/skills/${skill_name}"
+        echo "  Linked skill: ${skill_name}"
+    fi
+done
+
 echo ""
 echo "Setup complete!"
 echo ""
