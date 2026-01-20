@@ -20,9 +20,9 @@ Your AI will use these guides to walk you through the system.
 |------|-------|-------------------|
 | `01-welcome.md` | Welcome & Orientation | What Sourdough is, what you hope to do, the "just ask" habit |
 | `02-session-logging.md` | Session Logging | How memory works, what gets captured, your preferences |
-| `03-skills.md` | Building Skills | Creating reusable workflows (coming soon) |
-| `04-learning.md` | Learning Framework | How the system learns about you (coming soon) |
-| `05-making-it-yours.md` | Customization | Making Sourdough your own (coming soon) |
+| `03-skills.md` | Skills | Using and creating reusable workflows |
+| `04-learning.md` | Learning Framework | How the system learns about you over time |
+| `05-customization.md` | Customization | Making Sourdough truly yours |
 
 ## The Core Habit
 
