@@ -1,0 +1,103 @@
+# Sourdough Configuration
+# ======================
+# Copy this file to ~/ai-data/config/settings.yaml and customize.
+# Your AI assistant will read these settings to understand your preferences.
+
+# ─────────────────────────────────────────────────────────────────
+# PATHS
+# ─────────────────────────────────────────────────────────────────
+# Where your personal data lives. Default: ~/ai-data/
+# Uncomment and modify if you use a different location (e.g., OneDrive)
+
+# data_path: ~/ai-data/
+# data_path: ~/Library/CloudStorage/OneDrive/ai-data/  # Example for OneDrive
+
+# ─────────────────────────────────────────────────────────────────
+# SESSION LOGGING
+# ─────────────────────────────────────────────────────────────────
+# How session logs are created and maintained
+
+session_logging:
+  # How much detail in session logs?
+  # Options: minimal, moderate, detailed
+  detail_level: moderate
+
+  # What to capture in logs
+  capture:
+    decisions: true          # Key decisions and reasoning
+    files_modified: true     # Files created/changed
+    outcomes: true           # What was accomplished
+    open_items: true         # TODOs and next steps
+    observations: false      # Observations about your preferences (can be verbose)
+
+  # When should the AI update the log?
+  # Options: after_each_chunk, end_of_session, on_request
+  update_timing: after_each_chunk
+
+# ─────────────────────────────────────────────────────────────────
+# LEARNING
+# ─────────────────────────────────────────────────────────────────
+# How the system learns about your preferences
+
+learning:
+  # Automatically capture observations to user_model.yaml?
+  auto_capture: true
+
+  # Confidence threshold for capturing observations
+  # Options: any, medium, high
+  # - any: capture everything, review later
+  # - medium: capture when pattern appears 2-3 times
+  # - high: only capture explicit statements or strong patterns
+  confidence_threshold: medium
+
+# ─────────────────────────────────────────────────────────────────
+# COMMUNICATION STYLE
+# ─────────────────────────────────────────────────────────────────
+# How you prefer your AI to communicate
+
+communication:
+  # Default response length
+  # Options: concise, moderate, detailed
+  default_length: concise
+
+  # Ask before making significant changes?
+  confirm_significant_changes: true
+
+  # How many fix attempts before reporting an error?
+  auto_fix_attempts: 2
+
+# ─────────────────────────────────────────────────────────────────
+# INTEGRATIONS (Optional)
+# ─────────────────────────────────────────────────────────────────
+# Connect to external tools and services
+
+# integrations:
+#   # Daily notes integration (Obsidian, Logseq, etc.)
+#   daily_notes:
+#     enabled: false
+#     path: ~/obsidian/vault/daily/
+#     format: "YYYY-MM-DD.md"
+#
+#   # Task manager integration
+#   tasks:
+#     enabled: false
+#     provider: todoist  # or: things, reminders, taskwarrior
+#     # api_key: your-api-key  # if needed
+#
+#   # Calendar integration
+#   calendar:
+#     enabled: false
+#     provider: apple  # or: google, outlook
+
+# ─────────────────────────────────────────────────────────────────
+# ADVANCED
+# ─────────────────────────────────────────────────────────────────
+
+# advanced:
+#   # Git auto-commit session logs?
+#   git_auto_commit: false
+#
+#   # Rolling summary (condenses old logs)
+#   rolling_summary:
+#     enabled: false
+#     retain_days: 30

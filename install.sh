@@ -43,6 +43,7 @@ mkdir -p "${DATA_DIR}/memory"
 mkdir -p "${DATA_DIR}/inbox"
 mkdir -p "${DATA_DIR}/projects"
 mkdir -p "${DATA_DIR}/cache"
+mkdir -p "${DATA_DIR}/config"
 
 # Create starter CLAUDE.md if it doesn't exist
 if [[ ! -f "${DATA_DIR}/CLAUDE.md" ]]; then
