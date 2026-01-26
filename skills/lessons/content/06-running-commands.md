@@ -1,117 +1,130 @@
 # Lesson 6: Running Commands
 
-You've learned conversation, files, and context. Now let's explore something powerful and a bit more advanced: **running system commands through AI**.
+You've learned conversation, files, and context. Now let's explore something powerful: **running system commands through AI**.
 
 ## What You'll Learn
 
-- How AI can run bash (Mac/Linux) or PowerShell (Windows) commands
+- How AI can run terminal commands for you
 - What this capability enables
 - Safety considerations
-- Practical examples of command usage
+- Practical command examples
 
-## What Does "Running Commands" Mean?
+---
 
-When I run commands, I can:
+## Part 1: Commands Through Conversation
+
+Here's something cool: I can run terminal commands (bash on Mac/Linux, PowerShell on Windows) just by you asking me in plain English.
+
+**What I can do**:
 - List directory contents
 - Check system information
 - Install software
 - Run scripts
-- Check file permissions
 - Interact with git
 - Automate tasks
 
-This is like having me type commands in your terminal for you.
+Think of it like this: instead of opening a terminal and typing commands yourself, you just tell me what you want to know, and I run the commands for you.
 
-## How It Works
+### Try This
 
-**You ask**: "What Python version is installed?"
-**I run**: `python3 --version`
-**You get**: The output showing your Python version
+Let's start simple. Ask me:
 
-I use the Bash tool (Mac/Linux) or PowerShell (Windows) to execute commands and return results.
+"What directory am I currently in?"
 
-## Let's Try Something Simple
+I'll run the `pwd` command (or equivalent) and show you the result.
 
-**Say**: "List the files in my sourdough.ai directory"
+**Go ahead—try it now.**
 
-I'll run: `ls ~/sourdough.ai/` (or equivalent for Windows)
-
-You'll see the output showing all files and folders.
-
-Try it now!
+**[PAUSE - Wait for user to ask about current directory. Run the command, show the output, and explain what happened. Then continue.]**
 
 ---
 
-## What Just Happened?
+Nice! See how that worked? You asked in natural language, I figured out which command to run, and you got the answer.
 
-I:
-1. Understood you wanted to list files
-2. Constructed the appropriate command
-3. Ran it in your system shell
-4. Returned the output to you
+## Part 2: Understanding Command Execution
 
-You got the information without opening a terminal yourself.
+Here's what just happened behind the scenes:
 
-## Practical Examples
+1. **You asked** in plain English
+2. **I understood** what information you needed
+3. **I chose the right command** (`pwd` shows current directory)
+4. **I executed it** using the Bash tool
+5. **I showed you the result**
 
-### Example 1: Checking Disk Space
+You didn't need to know the command syntax—you just asked naturally.
 
-**You**: "How much disk space do I have?"
-**I run**: `df -h` (Mac/Linux) or `Get-PSDrive` (Windows)
-**Result**: Disk usage information
+### Try This
 
-### Example 2: Finding Files
+Now let's try something more useful. Ask me:
 
-**You**: "Find all Python files in my projects directory"
-**I run**: `find ~/projects -name "*.py"` or equivalent
-**Result**: List of Python files
+"List the files in my sourdough.ai directory"
 
-### Example 3: Git Operations
+**Go ahead—try it.**
 
-**You**: "What's the status of my sourdough.ai git repo?"
-**I run**: `cd ~/sourdough.ai && git status`
-**Result**: Git status showing changes, branches, etc.
-
-### Example 4: Installing Packages
-
-**You**: "Install the requests library for Python"
-**I run**: `pip install requests` (in the appropriate venv)
-**Result**: Package installed
-
-## Commands I Run Often
-
-**File operations**: ls, cd, pwd, mkdir, cp, mv, rm
-**Text processing**: grep, cat, head, tail
-**System info**: df, du, ps, top
-**Package management**: pip, npm, brew, apt
-**Version control**: git status, git diff, git commit
-**Network**: curl, wget, ping
-
-## Safety and Commands
-
-**Important**: I can run any command you ask me to, but I:
-- **Warn about destructive operations** (like `rm -rf`)
-- **Explain what a command does** if it's complex
-- **Ask confirmation** for system-wide changes
-- **Won't run malicious commands** even if asked
-
-You're in control, and I'm here to help safely.
-
-## Let's Practice
-
-Try asking me to run a few commands:
-
-1. "What directory am I currently in?"
-2. "Show me the contents of my home directory"
-3. "Check if Python is installed and what version"
-
-Pick one and try it!
+**[PAUSE - Wait for user to ask about listing files. Run ls/dir command, show the output with file listing. Explain what you see (the different directories and files). Then continue.]**
 
 ---
 
-## Command Output
+Perfect! You can see all the files and folders: `skills/`, `engine/`, `README.md`, and so on.
 
-When I run commands, you see the output just like you would in a terminal:
+## Part 3: Practical Command Examples
+
+Let me show you some common things you can ask me to do:
+
+**System Information**:
+- "How much disk space do I have?"
+- "What Python version is installed?"
+- "Show me my system info"
+
+**File Operations**:
+- "Find all Python files in my projects directory"
+- "Show me recently modified files"
+- "Check if a file exists"
+
+**Git Operations**:
+- "What's the git status of this repo?"
+- "Show me recent commits"
+- "What branch am I on?"
+
+The pattern is always the same: you ask naturally, I run the appropriate command, you get the results.
+
+### Try This
+
+Let's try checking your Python version. Ask me:
+
+"Check if Python is installed and what version"
+
+**Go ahead—try it.**
+
+**[PAUSE - Wait for user to ask about Python. Run python3 --version or python --version, show the output. If Python isn't installed, explain that and offer to help install it. Then continue.]**
+
+---
+
+Great! Now you can see what version you have (or whether you need to install it).
+
+## Part 4: Understanding Safety
+
+Here's something important: **I can run powerful commands, but I'm careful about safety**.
+
+Before I run commands that could:
+- Delete files
+- Change system settings
+- Modify permissions
+- Install software system-wide
+
+I'll:
+- **Explain what the command does**
+- **Warn you about risks**
+- **Ask for confirmation** if needed
+- **Show you what will happen** first
+
+**Example**: If you ask me to "delete all temporary files," I won't just run `rm -rf` on something. I'll first show you what files would be deleted and ask you to confirm.
+
+You're always in control.
+
+### Command Output Format
+
+When I run commands, you'll see the output just like in a terminal:
 
 ```bash
 $ ls ~/sourdough.ai/
@@ -123,103 +136,122 @@ docs/
 learning/
 ```
 
-If there's an error, you'll see that too, and we can troubleshoot together.
+If there's an error, you'll see that too, and we can troubleshoot together (that's what Lesson 7 is all about!).
 
-## Combining with File Operations
+## Part 5: Commands Build Context
 
-Here's where it gets powerful:
+Here's where it gets really powerful: **commands work with context**, just like everything else.
 
-**You**: "List my scripts directory, then read the backup.sh file"
-**I**:
-1. Run `ls ~/scripts/`
-2. Read `~/scripts/backup.sh`
-3. Report findings from both
-
-## Commands and Context
-
-Commands build context too:
+Watch this pattern:
 
 **You**: "List files in sourdough.ai"
-**I**: [runs ls, shows output]
+**I**: [run ls, show files]
 
 **You**: "Read the README from that directory"
-**I**: [knows you mean ~/sourdough.ai/README.md from context]
+**I**: [I know you mean ~/sourdough.ai/README.md from context]
 
-## Scripts and Automation
+You don't have to repeat yourself—I remember what we're talking about.
 
-I can run scripts you've created:
+### Try This
 
-**You**: "Run my backup script"
-**I**: `bash ~/scripts/backup.sh` (after confirming location)
+Let's practice combining commands and files:
 
-This is huge for automation.
+1. "Show me what's in my home directory"
+2. Wait for the list
+3. Then ask me to "Show me more details about [pick a file you see]"
 
-## Multi-Step Commands
+**Go ahead—try this two-step process.**
 
-I can chain commands together:
-
-**You**: "Create a directory called test-project and initialize it as a git repo"
-**I run**: `mkdir ~/test-project && cd ~/test-project && git init`
-
-Complex operations made simple.
-
-## Platform Differences
-
-**Mac/Linux**: I use bash commands (ls, grep, etc.)
-**Windows**: I use PowerShell equivalents (Get-ChildItem, Select-String, etc.)
-
-You don't have to worry about this—I handle platform differences automatically.
-
-## When Commands Are Useful
-
-**Developers**: Running tests, checking logs, git operations
-**System admins**: Monitoring systems, checking configs, managing services
-**Everyone**: Finding files, checking disk space, installing software
-
-## Key Takeaways
-
-- I can run system commands on your behalf
-- This enables automation and system interaction
-- Commands are safe—I warn about risky operations
-- Combine commands with file operations for powerful workflows
-- Platform differences handled automatically
-- This bridges conversation and system action
-
-## Advanced: Background Commands
-
-Some commands take time (like long-running scripts). I can:
-- Run them and wait for completion
-- Show you progress if possible
-- Handle errors gracefully
-
-## Real-World Scenario
-
-**Scenario**: You're debugging a Python script
-
-**You**: "Run my script.py"
-**I**: Run it, see an error
-**You**: "What does that error mean?"
-**I**: Explain the error
-**You**: "Read script.py and fix the bug"
-**I**: Read the file, identify the issue, fix it
-**You**: "Run it again"
-**I**: Run it, confirm it works
-
-See how commands + files + conversation = powerful workflow?
-
-## Questions?
-
-Common questions:
-- "Can you run GUI applications?" (No, only command-line tools)
-- "What if a command fails?" (I'll show you the error and help troubleshoot)
-- "Can you run commands as sudo/admin?" (I'll ask for confirmation first)
+**[PAUSE - Wait for user to ask about home directory, show the listing. Then wait for them to ask about a specific file. Read or get info about that file. Explain how context carried over between the two requests. Then continue.]**
 
 ---
 
-**Ready for Lesson 7?** Next, we'll learn about collaborative troubleshooting—solving problems together.
+Nice work! See how you didn't have to spell out the full path the second time? I remembered what directory we were talking about.
 
-Say "next lesson" when ready.
+## Part 6: Multi-Step Operations
+
+I can also chain commands together to do complex things in one go.
+
+**Example**: "Create a directory called test-project and initialize it as a git repo"
+
+I'll run: `mkdir ~/test-project && cd ~/test-project && git init`
+
+Multiple commands, one request. Complex operations made simple.
+
+### Platform Differences (I Handle These)
+
+**Mac/Linux**: I use bash commands (ls, grep, pwd, etc.)
+**Windows**: I use PowerShell equivalents (Get-ChildItem, Select-String, etc.)
+
+You don't need to worry about this—I automatically use the right commands for your system.
+
+## Part 7: Real-World Scenario
+
+Let me show you how this all comes together in a real situation.
+
+**Imagine**: You have a Python script that's not working.
+
+Here's how we'd solve it together:
+1. **You**: "Run my script.py"
+2. **I**: Run it, see an error, show you the error message
+3. **You**: "What does that error mean?"
+4. **I**: Explain the error in plain English
+5. **You**: "Read script.py and fix the bug"
+6. **I**: Read the file, identify the issue, fix it
+7. **You**: "Run it again"
+8. **I**: Run it, confirm it works!
+
+See how commands + files + conversation = powerful collaboration?
+
+---
+
+## Wrap-Up: You've Got Command Powers
+
+Great work! You now understand how to use AI to run system commands.
+
+### Key Takeaways
+
+✅ Ask for commands in natural language—no syntax memorization needed
+✅ I handle the technical details (choosing commands, platform differences)
+✅ Safety is built-in—I warn about risky operations
+✅ Commands work with context (remember previous conversation)
+✅ Combine commands + files + conversation for powerful workflows
+
+### Common Questions
+
+Before we finish, here are answers to questions new users often have:
+
+**"Can you run GUI applications?"**
+No, only command-line tools. But I can do most things through terminal commands.
+
+**"What if a command fails?"**
+I'll show you the error and help troubleshoot (that's what the next lesson is about!).
+
+**"Can you run commands as sudo/admin?"**
+Yes, but I'll explain what's happening and ask for confirmation first.
+
+**"How do I know what commands you're running?"**
+I'll always show you the command and its output—complete transparency.
+
+**Any other questions?** Ask away!
+
+---
+
+## Next Steps
+
+**Ready for Lesson 7?**
+Next, we'll learn about collaborative troubleshooting—solving problems together when things don't work as expected.
+
+**Need more practice first?**
+That's totally fine! Try asking me to run a few more commands. Experiment with:
+- Checking system information
+- Finding files
+- Git commands (if you have any repos)
+
+Say "continue lessons" whenever you're ready for Lesson 7.
 
 ---
 
 **Progress**: Lesson 6 of 14 complete 🎉
+
+*Remember: Commands are just another way to have a conversation about your system!*

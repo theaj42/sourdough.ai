@@ -9,7 +9,9 @@ You know how to work with AI effectively. Now let's talk about something unique 
 - How learning improves AI assistance over time
 - How to guide the learning process
 
-## The Sourdough Metaphor Revisited
+---
+
+## Part 1: The Sourdough Metaphor Revisited
 
 Remember from the README:
 
@@ -17,107 +19,123 @@ Remember from the README:
 
 **The learning framework is how your AI assistant develops character.**
 
-## What Gets Learned?
+It's what makes your AI uniquely yours—adapted to your preferences, your workflows, your style.
 
-The learning framework captures:
+### What Gets Learned?
 
-**User model**: Patterns about how you work
-**Approach registry**: What works for what problems
-**Pending learnings**: Observations that might become rules
-**Failures**: Post-mortems on what went wrong
+The learning framework captures four types of knowledge:
 
-This is stored in your personal data layer: `~/ai-data/learning/`
+**User model** (`user_model.yaml`):
+- How you like to communicate
+- Your working patterns
+- Technical preferences
+- Things you've corrected me about
 
-## How Learning Works
+**Approach registry** (`approach_registry/`):
+- What works for what problem types
+- Successful techniques
+- Failed approaches to avoid
+
+**Pending learnings** (`pending_learnings.yaml`):
+- Observations that might become rules
+- Patterns I've noticed
+- Things to review
+
+**Failures** (`failures/`):
+- Post-mortems on what went wrong
+- Root causes
+- Prevention strategies
+
+All of this lives in `~/ai-data/learning/`—your personal knowledge base.
+
+## Part 2: How Learning Works
 
 As we work together, I:
 1. **Observe patterns** in how you work
 2. **Note your preferences** (stated or implied)
-3. **Track what works** for different problem types
+3. **Track what works** for different situations
 4. **Document corrections** when you tell me I'm wrong
 5. **Write observations** to learning files
 
-**Important**: This happens automatically, in the background.
+**Important**: This happens automatically in the background. You don't have to ask.
 
-## User Model
+### Try This
 
-The user model captures things like:
+Let's see if you have a user model yet. Ask me:
 
-**Communication preferences**:
-- Do you prefer brief answers or detailed explanations?
-- Do you like me to ask first or just do it?
-- What tone works best for you?
+"Show me my user model" or "What have you learned about me?"
 
-**Working patterns**:
-- What time of day do you work?
-- Do you prefer planning or diving in?
-- How do you handle errors?
+**Go ahead—try it.**
 
-**Technical preferences**:
-- Favorite tools and languages
-- Coding style conventions
-- Testing approaches
+**[PAUSE - Wait for user to ask. Check if ~/ai-data/learning/user_model.yaml exists. If yes, read it and summarize key learnings. If no, explain that we can start building one together. Either way, then continue.]**
 
-**Personal quirks**:
-- Things you've corrected multiple times
-- Strong preferences you've stated
-- Things that annoy you
+---
 
-### Example User Model Entry
+Good! Now you can see what the learning framework captures (or will capture as we work).
+
+## Part 3: Example: User Model
+
+Let me show you what a user model looks like:
 
 ```yaml
 communication:
   - "Prefers concise responses with option to dig deeper"
-  - "Dislikes excessive enthusiasm or cheerleading language"
+  - "Dislikes excessive enthusiasm or cheerleading"
   - "Appreciates when I push back if approach seems wrong"
 
 working_style:
   - "Values building over planning (avoid analysis paralysis)"
   - "Prefers organic evolution over upfront over-engineering"
-  - "Likes to learn by doing rather than theoretical study"
+  - "Likes to learn by doing rather than theory"
 
 technical:
   - "Uses bash extensively, prefers /bin/ls over aliased ls"
-  - "Commits at logical breakpoints without being asked"
   - "Always reads file before editing (strong preference)"
+  - "Commits at logical breakpoints without being asked"
 
 corrections:
-  - "2026-01-15: Corrected me for suggesting a complex solution when simple one existed"
+  - "2026-01-15: Corrected me for over-complicating a simple task"
   - "2026-01-18: Reminded me to use actual time, not estimates"
 ```
 
-## Let's Check Your User Model
+These observations guide my behavior to match your preferences.
 
-Want to see what I've learned about you so far?
+### Try This
 
-**Say**: "Show me my user model" or "What have you learned about my preferences?"
+Let's add a learning to your user model. Think of a preference you have about how I should work with you.
 
-If you don't have one yet, we can start one together.
+For example:
+- "I prefer brief explanations unless I ask for details"
+- "I always want to see git diff before committing"
+- "I like when you explain your reasoning"
+
+Tell me a preference, and I'll add it to your user model.
+
+**Go ahead—what's a preference you have?**
+
+**[PAUSE - Wait for user to state a preference. Acknowledge it, then write it to ~/ai-data/learning/user_model.yaml (create the file if it doesn't exist). Show them what you added and explain how this will guide future interactions. Then continue.]**
 
 ---
 
-## Approach Registry
+Excellent! I've captured that preference and will remember it going forward.
+
+## Part 4: Approach Registry
 
 The approach registry captures **what works** for different situations:
 
-**Problem type**: "Setting up Python project"
-**Approach**: "Use venv for isolation, requirements.txt for dependencies, create basic .gitignore"
+**Problem**: "Setting up Python project"
+**Approach**: "Use venv for isolation, requirements.txt for dependencies, create .gitignore"
 **Why it works**: "Keeps dependencies isolated, makes it reproducible"
 
-**Problem type**: "Debugging import errors"
-**Approach**: "Check venv is activated → verify package installed → check Python path → check for typos"
-**Why it works**: "Covers 95% of import issues in this order"
+**Problem**: "Debugging import errors"
+**Approach**: "Check venv activated → verify package installed → check Python path → check for typos"
+**Why it works**: "Covers 95% of import issues in order of likelihood"
 
-### Building Approach Knowledge
+As we solve problems together, I note which approaches worked. Next time a similar problem comes up, I know what to try first.
 
-As we solve problems together:
-- I note which approaches worked
-- I note which approaches failed
-- I build a library of solutions
+This builds a library of solutions specific to your context.
 
-Next time similar problem comes up, I know what to try first.
-
-## Pending Learnings
+## Part 5: Pending Learnings
 
 Sometimes I notice a pattern that might be important:
 
@@ -125,11 +143,16 @@ Sometimes I notice a pattern that might be important:
 **Frequency**: "Seen 3 times in 5 days"
 **Potential rule**: "Should I always suggest X in this context?"
 
-These go in `pending_learnings.yaml` for review.
+These go in `pending_learnings.yaml` for periodic review.
 
-**You can review** and promote to CLAUDE.md if you agree.
+You can review them and decide:
+- Promote to user model (make it a rule)
+- Keep observing (need more data)
+- Discard (not actually a pattern)
 
-## Failures (Post-Mortems)
+This prevents me from jumping to conclusions while still capturing potentially useful patterns.
+
+## Part 6: Failures and Post-Mortems
 
 When something goes significantly wrong, I write a post-mortem:
 
@@ -139,7 +162,9 @@ When something goes significantly wrong, I write a post-mortem:
 
 This ensures we don't repeat mistakes.
 
-## How This Improves Assistance
+Failures are learning opportunities. Documenting them makes us better.
+
+## Part 7: How This Improves Assistance Over Time
 
 **First week**:
 - I know general best practices
@@ -154,113 +179,45 @@ This ensures we don't repeat mistakes.
 
 **After several months**:
 - I understand your workflow deeply
-- I make decisions aligned with your preferences
+- I make decisions aligned with your style
 - I catch mistakes you typically make
 - Collaboration feels seamless
 
-## Your Role in Learning
+The AI truly becomes **your** AI.
+
+---
+
+## Wrap-Up: Growing Your Own Sourdough Culture
+
+Great work! You now understand how the learning framework personalizes your AI assistant.
+
+### Key Takeaways
+
+✅ Learning framework captures patterns, preferences, and approaches
+✅ I write observations automatically as we work
+✅ User model personalizes communication and decisions
+✅ Approach registry builds solution library
+✅ Failures document lessons learned
+✅ Learning makes AI assistance better over time
+✅ Your learning data is personal and private
+✅ You guide learning by correcting and stating preferences
+
+### Your Role in Learning
 
 **You help me learn** by:
 - **Correcting me**: "No, I prefer X not Y"
 - **Stating preferences**: "I always want to see a summary first"
-- **Explaining context**: "In this project, we use approach X because..."
+- **Explaining context**: "In this project, we use X because..."
 - **Reviewing learnings**: Periodically check what I've captured
 
-**The more you guide, the better I learn.**
+The more you guide, the better I learn.
 
-## Learning is Personal and Local
-
-**Important**: Your learning data stays in `~/ai-data/learning/`
-
-- It's just for you
-- It's private
-- It makes your AI assistant uniquely yours
-- It doesn't affect anyone else's experience
-
-This is why sourdough is personal—it learns *your* culture.
-
-## Let's Practice
-
-Try this:
-
-1. **State a preference**: "I want you to always show me git diff before committing"
-2. **I'll capture it**: Write to your user model
-3. **Verify**: "Show me what you just added to my user model"
-4. **Use it**: Next time we commit, I'll remember to show diff first
-
-Try stating a preference now!
-
----
-
-## Learning Templates
-
-Sourdough provides templates for learning files:
-
-**Location**: `~/sourdough.ai/learning/templates/`
-**Files**:
-- `user_model.template.yaml`
-- `approach_entry.template.yaml`
-- `failure_postmortem.template.md`
-
-These show the structure—I'll fill them in based on our work.
-
-## When I Write to Learning Files
-
-I update learning files when:
-- You state a preference explicitly
-- You correct me (same correction 2+ times)
-- We solve a problem effectively
-- Something goes wrong and we document it
-- I notice a strong pattern
-
-**This happens automatically**—you don't have to ask.
-
-## Reviewing and Refining
-
-Periodically (monthly is good), review:
-
-**User model**: "Does this still reflect my preferences?"
-**Approach registry**: "Are these approaches still valid?"
-**Pending learnings**: "Should any of these become permanent rules?"
-
-Update or delete as needed—preferences change over time.
-
-## Learning and CLAUDE.md
-
-**CLAUDE.md**: Your explicit instructions (you write)
-**Learning files**: Observations and patterns (AI writes)
-
-**Together**: Create a complete picture of how you work
-
-Eventually, strong patterns from learning might graduate to CLAUDE.md.
-
-## Key Takeaways
-
-- Learning framework captures patterns, preferences, and approaches
-- I write observations automatically as we work
-- User model personalizes communication and decision-making
-- Approach registry builds solution library
-- Failures document lessons learned
-- Learning makes AI assistance better over time
-- Your learning data is personal and private
-- You guide learning by correcting and stating preferences
-
-## Real-World Impact
-
-Users report that after a few weeks:
-- AI suggestions align better with their preferences
-- Less clarification needed
-- More productive collaboration
-- Fewer mistakes and misunderstandings
-
-**The AI truly becomes your AI.**
-
-## The Sourdough Effect
+### The Sourdough Effect
 
 This is why sourdough is a metaphor:
 
-**Starter** (framework) is the same for everyone
-**Culture** (your AI) develops unique character through:
+**Starter** (framework): Same for everyone
+**Culture** (your AI): Develops unique character through:
 - Your preferences (learning framework)
 - Your instructions (CLAUDE.md)
 - Your skills (personal skills directory)
@@ -268,19 +225,49 @@ This is why sourdough is a metaphor:
 
 **Result**: An AI assistant that works the way you work.
 
-## Questions?
+### Real-World Impact
 
-Common questions:
-- "Can I edit learning files manually?" (Yes! They're just YAML/markdown)
-- "What if I don't like something that was learned?" (Delete or edit it)
-- "How much learning data accumulates?" (Not much—mostly structured observations)
+Users report that after a few weeks:
+- AI suggestions align better with preferences
+- Less clarification needed
+- More productive collaboration
+- Fewer mistakes and misunderstandings
+
+### Common Questions
+
+Before we finish, let me answer common questions:
+
+**"Can I edit learning files manually?"**
+Yes! They're just YAML and markdown files. Edit away.
+
+**"What if I don't like something that was learned?"**
+Delete or edit it. You're in control.
+
+**"How much data accumulates?"**
+Not much—mostly structured observations. Learning files stay small.
+
+**"Will this slow things down?"**
+No. Writing to learning files is fast and happens in the background.
+
+**Any other questions?** Ask away!
 
 ---
 
-**Ready for Lesson 12?** Next, we'll talk about managing multiple projects and keeping organized.
+## Next Steps
 
-Say "next lesson" when ready.
+**Ready for Lesson 12?**
+Next, we'll talk about managing multiple projects and keeping organized.
+
+**Want to explore your learning files first?**
+That's great! Try:
+- Reading your user model
+- Adding more preferences
+- Understanding what's been captured
+
+Say "continue lessons" whenever you're ready for Lesson 12.
 
 ---
 
 **Progress**: Lesson 11 of 14 complete 🎉
+
+*Remember: The learning framework is how AI becomes uniquely yours. Feed it, and it grows!*

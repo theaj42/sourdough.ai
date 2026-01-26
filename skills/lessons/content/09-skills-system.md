@@ -9,124 +9,167 @@ You've learned the fundamentals. Now let's explore one of sourdough's most power
 - How skills are structured
 - How to create your own skills
 
-## What is a Skill?
+---
+
+## Part 1: What is a Skill?
 
 A skill is a **packaged set of instructions** that teaches AI how to perform a specific task.
 
 Think of it like:
-- A recipe for the AI to follow
+- A recipe that I follow
 - A template for repetitive tasks
-- A way to encode knowledge once and use it many times
+- A way to encode knowledge once and reuse it many times
 
-## Why Skills Matter
+**The benefit**: Instead of explaining what you want every time, you just invoke the skill by name, and I know exactly what to do.
 
-**Without skills**: You explain what you want every time
-**With skills**: You invoke the skill by name, AI knows what to do
+### Example: Without vs. With Skills
 
-Example:
-- **Without**: "Take these meeting notes, extract action items, identify participants, summarize key decisions, and format it nicely"
-- **With**: "Use the meeting-summarizer skill on these notes"
+**Without skills**:
+"Take these meeting notes, extract action items, identify participants, summarize key decisions, create a follow-up task list, and format everything nicely"
 
-Skills save time and ensure consistency.
+**With skills**:
+"Use the meeting-summarizer skill on these notes"
 
-## Skills in Sourdough
+Same result, way less explaining. Skills save time and ensure consistency.
 
-Check what skills are available:
+### Try This
 
-**Say**: "What skills are available?" or "List skills"
+Let's see what skills are available. Ask me:
 
-You'll see skills in:
-- `~/sourdough.ai/skills/` (framework skills, shared with everyone)
-- `~/ai-data/skills/` (your personal skills, just for you)
+"What skills are available?" or "List skills"
 
-## Let's Use a Skill
+**Go ahead—try it.**
 
-Sourdough includes example skills. Let's try the hello-world skill:
-
-**Say**: "Run the hello-world skill" or just "hello world"
-
-Watch what happens—the skill provides structured instructions, and I follow them.
-
-Try it now!
+**[PAUSE - Wait for user to ask about skills. List the available skills from both ~/sourdough.ai/skills/ (framework skills) and ~/ai-data/skills/ (personal skills if they exist). Explain what you see: hello-world, fabric skills, etc. Then continue.]**
 
 ---
 
-## What Just Happened?
+Nice! You can see sourdough includes several example skills to get you started.
+
+## Part 2: Using a Skill
+
+Let's try using one. Sourdough includes a simple example skill called "hello-world" that demonstrates how skills work.
+
+### Try This
+
+Ask me: "Run the hello-world skill"
+
+Watch what happens. I'll read the skill instructions and follow them.
+
+**Go ahead—try it now.**
+
+**[PAUSE - Wait for user to invoke the hello-world skill. Execute the skill by reading the SKILL.md file and following its instructions. Show them what you're doing: "I'm reading the skill file, now I'm following the instructions..." Then continue.]**
+
+---
+
+Perfect! See what happened there?
+
+## Part 3: How Skills Actually Work
+
+Let me show you what just happened behind the scenes:
 
 When you invoked that skill:
-1. I found the skill in `skills/examples/hello-world/`
-2. I read the `SKILL.md` file inside it
-3. The file contained instructions for what to do
-4. I followed those instructions
-5. You got the result
+1. **I looked for the skill** in `~/sourdough.ai/skills/examples/hello-world/`
+2. **I read the SKILL.md file** inside that directory
+3. **The file contained instructions** for what to do
+4. **I followed those instructions** step by step
+5. **You got the result**
 
-That's how skills work: structured instructions I can follow.
+That's the whole pattern: **structured instructions that I can follow**.
 
-## Anatomy of a Skill
+### Anatomy of a Skill
 
-Every skill has:
+Every skill has the same basic structure:
 
 **A directory**: `skills/my-skill/`
-**A SKILL.md file**: Instructions for the AI
+**A SKILL.md file**: Instructions for me to follow
 **Optional extras**: Templates, config files, scripts
 
-The `SKILL.md` file contains:
-- **Frontmatter**: Name, description, tools allowed
-- **Purpose**: Why this skill exists
-- **When to use**: Trigger conditions
-- **Process**: Step-by-step instructions
-- **Output format**: What the result looks like
+The SKILL.md file contains:
+- **Frontmatter** (name, description, tools allowed)
+- **Purpose** (why this skill exists)
+- **When to use** (trigger conditions)
+- **Process** (step-by-step instructions)
+- **Output format** (what the result looks like)
 
-## Example: Looking at a Real Skill
+### Try This
 
-Let's examine an actual skill:
+Let's look at the structure of a real skill. Ask me:
 
-**Say**: "Read the hello-world skill file"
+"Read the hello-world SKILL.md file"
 
-I'll read `~/sourdough.ai/skills/examples/hello-world/SKILL.md`
+You'll see exactly how a skill is structured.
 
-Look at the structure—see how it's organized? That's the template for all skills.
+**Go ahead—try it.**
 
-## Built-in Skills
-
-Sourdough comes with several skills:
-
-**hello-world**: Example skill for learning
-**fabric-***: Integration with Daniel Miessler's Fabric patterns
-- **improve-prompt**: Enhance LLM prompts
-- **extract-nuggets**: Pull key insights from content
-- **summarize-meeting**: Convert meeting notes to action items
-
-Try one: "Use the improve-prompt skill to enhance this prompt: 'make the code better'"
-
-## Creating Your Own Skill
-
-You can create custom skills for your repetitive tasks.
-
-**Process**:
-1. Create a directory: `~/ai-data/skills/my-skill/`
-2. Create `SKILL.md` with instructions
-3. Use it: "Run my-skill"
-
-Let's create a simple one together.
-
-### Practice: Create a Custom Skill
-
-**Say**: "Help me create a skill called 'daily-standup' that generates my standup report"
-
-We'll:
-1. Create the directory structure
-2. Write the SKILL.md file with instructions
-3. Test it
-4. Refine it
-
-Try this now—creating a skill for something you do regularly.
+**[PAUSE - Wait for user to ask. Read the ~/sourdough.ai/skills/examples/hello-world/SKILL.md file and show its contents. Point out the key sections: frontmatter, purpose, process, output format. Explain how each section guides the AI's behavior. Then continue.]**
 
 ---
 
-## Skill Frontmatter
+See that structure? That's the template for all skills.
 
-Every SKILL.md starts with YAML frontmatter:
+## Part 4: Built-in Skills
+
+Sourdough comes with several useful skills already:
+
+**Example Skills**:
+- **hello-world**: Learning example (what you just used)
+
+**Fabric Skills** (integration with Daniel Miessler's Fabric patterns):
+- **improve-prompt**: Enhance LLM prompts using best practices
+- **extract-nuggets**: Pull key insights from content, filter hype
+- **summarize-meeting**: Convert meeting notes to action items
+
+These are real, useful skills you can use today.
+
+### Try This
+
+Let's try a real skill. Ask me:
+
+"Use the improve-prompt skill to enhance this prompt: 'make the code better'"
+
+You'll see how a skill transforms vague input into something useful.
+
+**Go ahead—try it.**
+
+**[PAUSE - Wait for user to ask. Execute the fabric-improve-prompt skill on their example prompt. Show the improved version and explain what the skill did: added specificity, structure, examples, etc. Then continue.]**
+
+---
+
+Cool, right? That skill knows how to apply prompt engineering best practices automatically.
+
+## Part 5: Creating Your Own Skills
+
+Here's where it gets powerful: **you can create custom skills for your repetitive tasks**.
+
+The process is simple:
+1. Create a directory: `~/ai-data/skills/my-skill/`
+2. Create a `SKILL.md` file with instructions
+3. Use it: "Run my-skill"
+
+### Try This
+
+Let's create a simple skill together. Think of something you do regularly that would be useful to automate.
+
+Some ideas:
+- "daily-standup" that generates your standup report
+- "code-review-checklist" that checks code systematically
+- "blog-post-outline" that creates content structure
+- "project-status" that summarizes project state
+
+Tell me: "Help me create a skill called [your-skill-name] that [what it does]"
+
+**Go ahead—what skill would be useful for you?**
+
+**[PAUSE - Wait for user to describe a skill they want to create. Work with them to: 1) Create the directory structure, 2) Write the SKILL.md file with appropriate frontmatter and instructions, 3) Save it, 4) Test it by running it. Be encouraging and explain what you're doing at each step. Then continue.]**
+
+---
+
+Excellent! You just created your first custom skill.
+
+## Part 6: Skill Frontmatter
+
+Let me explain the YAML frontmatter at the top of every SKILL.md file:
 
 ```yaml
 ---
@@ -136,33 +179,18 @@ allowed-tools: ["Read", "Write", "Bash", "WebFetch"]
 ---
 ```
 
-**name**: How you invoke it
-**description**: When to use it
-**allowed-tools**: What tools the skill can use
+**name**: How you invoke it ("run my-skill-name")
+**description**: What it does (helps me know when to suggest it)
+**allowed-tools**: What tools the skill can use (safety boundary)
 
-## Skill Process Section
+The frontmatter tells me: who you are, what you do, and what you're allowed to use.
 
-The process section tells me what to do:
+## Part 7: Personal vs. Framework Skills
 
-```markdown
-## Process
-
-### 1. First Step
-Do this thing
-
-### 2. Second Step
-Then do this
-
-### 3. Final Step
-Finish with this
-```
-
-Clear, numbered steps I can follow.
-
-## Personal vs. Framework Skills
+There are two places skills can live:
 
 **Framework skills** (`~/sourdough.ai/skills/`):
-- Shared with everyone
+- Shared with everyone who uses sourdough
 - Updated when you pull from git
 - General-purpose
 
@@ -172,15 +200,20 @@ Clear, numbered steps I can follow.
 - Your secrets and preferences
 - Won't be overwritten by updates
 
-**Pro tip**: Personal skills override framework skills with the same name.
+**Pro tip**: If a personal skill has the same name as a framework skill, your personal version wins.
 
-## When to Create a Skill
+This means you can:
+- Create completely new skills
+- Customize existing skills for your needs
+- Keep your customizations separate from framework updates
+
+## Part 8: When to Create a Skill
 
 Create a skill when you:
-- Do something repeatedly
-- Want consistent results
-- Need to share a workflow
-- Want to encode knowledge
+- **Do something repeatedly** (same process, different inputs)
+- **Want consistent results** (ensure quality every time)
+- **Need to share a workflow** (teach others your process)
+- **Want to encode knowledge** (capture expertise)
 
 **Good skill candidates**:
 - Project setup workflows
@@ -188,91 +221,87 @@ Create a skill when you:
 - Report generation
 - Data processing pipelines
 - Documentation templates
+- Daily/weekly routines
 
-## Skill Best Practices
+**Not good skill candidates**:
+- One-off tasks
+- Highly contextual operations
+- Things you're still figuring out
 
-**Good skills**:
-- Do one thing well
-- Have clear instructions
-- Include examples in the SKILL.md
-- Explain the output format
-- Are easy to understand
+Start with something you do at least weekly.
 
-**Less good skills**:
-- Try to do everything
-- Have vague instructions
-- Require too much context
-- Are overly complex
+---
 
-Start simple, refine over time.
+## Wrap-Up: Skills Unlock Efficiency
 
-## Skills and Context
+Great work! You now understand sourdough's skills system.
 
-Skills can reference:
-- Files in your system
-- Your personal data layer
-- Templates or configs
-- External resources
+### Key Takeaways
 
-The skill instructions tell me how to find and use them.
+✅ Skills package instructions for repetitive tasks
+✅ Invoke skills by name instead of explaining every time
+✅ Sourdough includes example skills to learn from
+✅ Create personal skills for your workflows
+✅ Skills are just markdown files with structured instructions
+✅ Personal skills live in ~/ai-data/skills/
+✅ Skills save time and ensure consistency
 
-## Advanced: Skills Can Call Skills
-
-Skills can invoke other skills:
-
-**Example**: A "weekly-report" skill might:
-1. Run the "git-summary" skill for code changes
-2. Run the "meeting-summary" skill for meeting notes
-3. Combine into final report
-
-This creates powerful workflows.
-
-## Key Takeaways
-
-- Skills package instructions for repetitive tasks
-- Invoke skills by name instead of explaining every time
-- Sourdough includes example skills to learn from
-- Create personal skills for your workflows
-- Skills are just markdown files with structured instructions
-- Skills save time and ensure consistency
-
-## Real-World Skill Examples
+### Real-World Examples
 
 People create skills for:
 - **Daily standups**: Generate status reports
 - **Code reviews**: Systematic checklist execution
 - **Blog posts**: Content creation workflow
-- **Data analysis**: Standardized processing pipelines
-- **Infrastructure**: Deployment and setup procedures
+- **Data analysis**: Standardized processing
+- **Infrastructure**: Deployment procedures
 
-## Skills vs. Direct Instructions
+### Skill Best Practices
 
-**Use skills** when:
-- Task is repetitive
-- You want consistency
-- Workflow is complex
-- You'll do it again
+**Good skills**:
+- Do one thing well
+- Have clear, specific instructions
+- Include examples
+- Explain the output format
 
-**Use direct instructions** when:
-- One-off task
-- Highly contextual
-- Still figuring out the process
+**Less effective skills**:
+- Try to do everything
+- Have vague instructions
+- Require too much context
 
-Both are valid!
+Start simple, refine over time.
 
-## Questions?
+### Common Questions
 
-Common questions:
-- "How long should a skill be?" (As long as needed, but simpler is better)
-- "Can skills use external scripts?" (Yes! Skills can run bash/PowerShell scripts)
-- "What if my skill doesn't work?" (Test it, refine instructions, iterate)
+Before we finish, let me answer common questions:
+
+**"How long should a skill be?"**
+As long as needed, but simpler is usually better. Most skills are 50-150 lines.
+
+**"Can skills use external scripts?"**
+Yes! Skills can run bash/PowerShell scripts, use templates, reference files.
+
+**"What if my skill doesn't work?"**
+Test it, refine the instructions, iterate. Skills improve with use.
+
+**"Can skills call other skills?"**
+Yes! A skill can invoke other skills to create complex workflows.
+
+**Any other questions?** Ask away!
 
 ---
 
-**Ready for Lesson 10?** Next, we'll learn about session logging—tracking your work across conversations.
+## Next Steps
 
-Say "next lesson" when ready.
+**Ready for Lesson 10?**
+Next, we'll learn about session logging—tracking your work across conversations so context persists over time.
+
+**Want to create more skills first?**
+That's great! Practice makes perfect. Try creating 2-3 skills for things you do regularly.
+
+Say "continue lessons" whenever you're ready for Lesson 10.
 
 ---
 
 **Progress**: Lesson 9 of 14 complete 🎉
+
+*Remember: Skills are how you teach the AI your workflows. The more you create, the more powerful the system becomes!*

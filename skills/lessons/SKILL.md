@@ -71,11 +71,27 @@ Present the lesson content to the user, following the structure in the lesson fi
 
 ### 4. Interactive Teaching
 
-- Present lesson content in friendly, conversational tone
-- Encourage user to try things themselves
-- Demonstrate concepts when helpful
-- Answer questions as they arise
-- Keep it light and encouraging
+Lessons are interactive experiences with pause points where you wait for user action:
+
+**Structure**:
+- Present a section up to a `[PAUSE]` marker
+- Wait for user to try the exercise or ask questions
+- Respond to what they did with feedback and encouragement
+- Present next section up to next `[PAUSE]`
+- Continue until lesson complete
+
+**During pauses**:
+- Don't rush ahead - let them experiment
+- Give specific feedback on what they tried
+- If they get stuck, offer hints or demonstrations
+- If they ask questions, answer them before continuing
+- Celebrate when they succeed ("Nice! That's exactly right.")
+
+**Tone**:
+- Friendly and conversational
+- Encouraging, not condescending
+- Patient with mistakes
+- Enthusiastic about progress
 
 ### 5. Check Understanding
 

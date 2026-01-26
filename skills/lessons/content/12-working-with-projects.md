@@ -9,7 +9,9 @@ You understand the system deeply now. Let's talk about managing **multiple proje
 - Tracking project status
 - Using AI across different projects
 
-## The Multi-Project Reality
+---
+
+## Part 1: The Multi-Project Reality
 
 Most people work on multiple things:
 - Day job projects
@@ -22,19 +24,19 @@ Most people work on multiple things:
 
 **Solution**: Structured organization + AI assistance.
 
-## Project Organization
+### Project Organization
 
 Sourdough suggests organizing projects in your data layer:
 
 **Location**: `~/ai-data/projects/`
 
-Each project gets a directory:
+Each project gets its own directory:
 ```
 ~/ai-data/projects/
 ├── website-redesign/
 │   ├── PROJECT.md          # Overview, goals, status
 │   ├── notes.md            # Running notes
-│   └── tasks.md            # Project-specific tasks
+│   └── tasks.md            # Project tasks
 ├── backup-automation/
 │   ├── PROJECT.md
 │   └── scripts/
@@ -43,9 +45,23 @@ Each project gets a directory:
     └── exercises/
 ```
 
-## PROJECT.md Structure
+### Try This
 
-Each project has a PROJECT.md file:
+Let's see what projects you have (if any). Ask me:
+
+"What projects do I have?" or "List my projects"
+
+**Go ahead—try it.**
+
+**[PAUSE - Wait for user to ask. Check ~/ai-data/projects/ directory. If projects exist, list them and briefly describe what you see. If none exist, explain that we can create one together. Then continue.]**
+
+---
+
+Good! Now you know what you're working on (or that we can start organizing projects).
+
+## Part 2: PROJECT.md Structure
+
+Each project has a PROJECT.md file that provides context:
 
 ```markdown
 # Project: Website Redesign
@@ -54,14 +70,14 @@ Each project has a PROJECT.md file:
 Active / On Hold / Completed
 
 ## Goal
-Brief description of what this project is about and what success looks like.
+What success looks like for this project.
 
 ## Current Phase
 What you're working on right now.
 
 ## Next Actions
 - Immediate next steps
-- Things blocking progress
+- Blockers
 
 ## Resources
 - Links to documentation
@@ -69,51 +85,68 @@ What you're working on right now.
 - Key files
 
 ## Decisions
-- Major decisions made and why
-- Approaches tried and results
+- Major decisions and why
+- Approaches tried
 
 ## Notes
-Running log of important information.
+Running log of important info.
 ```
 
-## Let's Create a Project
+This file is context for me. When you switch projects, I read this and immediately know: goals, status, next actions, decisions.
 
-**Say**: "Help me create a project for [something you're working on]"
+### Try This
 
-We'll:
-1. Create the directory structure
-2. Write a PROJECT.md file
-3. Set up initial organization
+Let's create a project for something you're working on (or want to work on). Ask me:
 
-Try it now with a real project!
+"Help me create a project for [something you're working on]"
+
+For example:
+- "Help me create a project for learning Python"
+- "Help me create a project for my blog"
+- "Help me create a project for home automation"
+
+**Go ahead—what project should we create?**
+
+**[PAUSE - Wait for user to describe a project. Work with them to: 1) Create the directory structure in ~/ai-data/projects/, 2) Create a well-structured PROJECT.md file with all sections filled out based on what they tell you, 3) Save it and show them the result. Be thorough and ask questions to fill out sections meaningfully. Then continue.]**
 
 ---
 
-## Context Switching
+Excellent! You now have a project with proper organization.
 
-When switching between projects, I need context. Here's the pattern:
+## Part 3: Context Switching with AI
 
-**Start session**: "I want to work on the backup-automation project"
-**I do**: Read `~/ai-data/projects/backup-automation/PROJECT.md`
-**I know**: Goals, current phase, next actions, recent decisions
-**Result**: I'm oriented and ready to help
+When you switch between projects, I need context. Here's the pattern:
 
-This makes switching between projects seamless.
+**You say**: "I want to work on the backup-automation project"
 
-## Project Status Tracking
+**I do**:
+1. Read `~/ai-data/projects/backup-automation/PROJECT.md`
+2. Understand: goals, current phase, next actions, decisions
+3. I'm now oriented and ready to help
 
-Keep PROJECT.md up to date with:
+**Result**: Seamless context switching.
 
-**Status changes**: Active → On Hold → Completed
-**Phase updates**: "Design" → "Implementation" → "Testing"
-**Next actions**: Update as you complete and identify new tasks
-**Decisions**: Document why you chose approach X over Y
+You don't have to re-explain everything—the PROJECT.md does that for you.
 
-**AI can help**: "Update my backup-automation project status"
+### Try This
 
-## Multi-Project Session Logs
+Let's practice context switching. If you have multiple projects, ask me to switch to one:
 
-Session logs capture work across projects:
+"Let's work on [project name]"
+
+If you only have one project, that's fine—we'll practice this concept anyway.
+
+**Go ahead—try it.**
+
+**[PAUSE - Wait for user to ask about a project. Read the PROJECT.md file (or the one we just created), summarize what you learned: goals, current status, next actions. Then ask them what they want to work on for this project. Be enthusiastic about jumping into their work. Then continue.]**
+
+---
+
+See how quickly I got oriented? That's the power of structured project documentation.
+
+## Part 4: Multi-Project Session Logs
+
+Your session logs can capture work across multiple projects:
 
 ```markdown
 ## Session - 14:00
@@ -121,30 +154,31 @@ Session logs capture work across projects:
 **Focus**: Backup automation + Website redesign
 
 **Backup Automation**:
-- Implemented retry logic for failed backups
-- Tested with simulated failures
-- Next: Add email notifications
+- Implemented retry logic
+- Tested with failures
+- Next: Add notifications
 
 **Website Redesign**:
-- Created wireframes for new homepage
+- Created homepage wireframes
 - Decided on color palette
-- Next: Start implementing header component
+- Next: Implement header
+
 ```
 
-One log, multiple projects—see everything at a glance.
+One log entry, multiple projects—you see everything at a glance.
 
-## The Project Manifest (Optional)
+## Part 5: The Project Manifest (Optional)
 
 For many projects, consider a master list:
 
-**Location**: `~/ai-data/projects/MANIFEST.md`
+**File**: `~/ai-data/projects/MANIFEST.md`
 
 ```markdown
 # Project Manifest
 
 ## Active (3)
 - **backup-automation**: Implementing retry logic
-- **website-redesign**: Homepage wireframes done
+- **website-redesign**: Homepage wireframes complete
 - **learning-rust**: Working through chapter 6
 
 ## On Hold (2)
@@ -157,132 +191,83 @@ For many projects, consider a master list:
 
 Quick overview of everything in flight.
 
-## Project-Specific Skills
-
-Create skills for project-specific workflows:
-
-**Example**: `~/ai-data/skills/backup-test/`
-- Skill that runs your backup testing workflow
-- Project-specific but reusable
-
-**Example**: `~/ai-data/skills/deploy-website/`
-- Skill for deploying your website
-- Encodes the deployment process
-
-## Using AI Across Projects
-
-I can help with:
-
-**Project setup**: "Create a new Python project structure for [project]"
-**Context loading**: "Read the PROJECT.md for backup-automation"
-**Status updates**: "Update project status based on our work today"
-**Cross-project insights**: "What projects haven't I touched in over a month?"
-
-## Balancing Multiple Projects
-
-**Good practices**:
-- **Time-box**: "I'll work on this for 2 hours, then switch"
-- **Complete phases**: Finish one phase before switching
-- **Document before switching**: Update PROJECT.md so you can resume easily
-- **Review regularly**: Weekly review of all active projects
-
-**AI helps**: Maintain context across switches.
-
-## Let's Practice
-
-Try these:
-
-1. "What projects am I currently working on?"
-2. "Read the PROJECT.md for [your project]"
-3. "Help me identify next actions for [project]"
-4. "Update my [project] status"
-
-This demonstrates project management with AI assistance.
-
 ---
 
-## Project Archival
+## Wrap-Up: Organized Multi-Project Work
 
-When a project is complete or abandoned:
+Great work! You now know how to manage multiple projects effectively.
 
-**Option 1**: Move to `~/ai-data/projects/archive/`
-**Option 2**: Mark status as "Completed" or "Abandoned" and keep in place
-**Option 3**: Delete if truly no longer needed
+### Key Takeaways
 
-Keep a record of what you accomplished.
+✅ Organize projects in ~/ai-data/projects/
+✅ Each project has PROJECT.md for context
+✅ I read PROJECT.md when switching projects
+✅ Session logs track work across projects
+✅ Update project status as you work
+✅ Optional manifest provides overview
 
-## Projects and Git
-
-Many projects are git repos. Connect them:
-
-**Your code**: `~/code/my-project/` (the actual code repo)
-**Your project data**: `~/ai-data/projects/my-project/` (notes, tasks, status)
-
-**Link them** in PROJECT.md:
-```markdown
-## Repository
-`~/code/my-project` - Main code repository
-```
-
-AI can work with both:
-- Read/edit code in the repo
-- Read/update project documentation in ai-data
-
-## Cross-Project Patterns
-
-After managing multiple projects, you'll notice patterns:
-
-**Common setups**: Most Python projects need venv, requirements.txt, .gitignore
-**Standard workflows**: Testing → Review → Commit → Deploy
-**Recurring problems**: Same debugging approaches work across projects
-
-**Capture these** in approach registry (Lesson 11) or skills (Lesson 9).
-
-## Key Takeaways
-
-- Organize projects in `~/ai-data/projects/`
-- Each project has a PROJECT.md for context
-- Session logs track work across multiple projects
-- AI reads PROJECT.md to understand context when switching
-- Update project status as you work
-- Create project-specific skills for workflows
-- Use manifest for high-level overview
-- Document decisions to help future you
-
-## Real-World Benefits
+### Real-World Benefits
 
 People using structured project organization report:
 - Easier context switching
 - Less cognitive load
 - Better progress tracking
 - Clear historical record
-- Smoother collaboration (with AI and humans)
+- Smoother collaboration
 
-## Advanced: Project Templates
+### Project Management Workflow
 
-Create templates for common project types:
+**Create project**:
+- Make directory and PROJECT.md
+- Fill in goals, status, resources
 
-**Example**: Python project template
-- Standard directory structure
-- requirements.txt starter
-- Basic README and PROJECT.md
-- .gitignore
+**Work on project**:
+- Tell me which project
+- I read PROJECT.md for context
+- We work together
 
-**Use**: "Create a new Python project using my template"
+**Switch projects**:
+- Tell me the new project
+- I read its PROJECT.md
+- Seamless transition
 
-## Questions?
+**Update status**:
+- As phase changes
+- When completing milestones
+- When decisions are made
 
-Common questions:
-- "How many projects is too many?" (If you can't keep track, you have too many)
-- "Should every idea be a project?" (No—use inbox for ideas, projects for committed work)
-- "Can projects reference each other?" (Yes! Note dependencies in PROJECT.md)
+### Common Questions
+
+Before we finish, let me answer common questions:
+
+**"How many projects is too many?"**
+If you can't keep track, you have too many. Most people handle 3-5 active projects well.
+
+**"Should every idea be a project?"**
+No. Use inbox for ideas, projects for committed work.
+
+**"Can projects reference each other?"**
+Yes! Note dependencies in PROJECT.md.
+
+**"What about actual code repos?"**
+Keep code in ~/code/ or wherever you want. The PROJECT.md in ~/ai-data/projects/ is just documentation and context—link to the code repo in the Resources section.
+
+**Any other questions?** Ask away!
 
 ---
 
-**Ready for Lesson 13?** Next, we'll cover best practices—patterns that make AI collaboration effective.
+## Next Steps
 
-Say "next lesson" when ready.
+**Ready for Lesson 13?**
+Next, we'll cover best practices—patterns that make AI collaboration highly effective.
+
+**Want to set up more projects first?**
+That's great! Organize your work while the pattern is fresh.
+
+Say "continue lessons" whenever you're ready for Lesson 13.
 
 ---
 
 **Progress**: Lesson 12 of 14 complete 🎉
+
+*Remember: Good organization multiplies AI effectiveness. Structure enables speed!*
