@@ -9,7 +9,9 @@ You know how to create files. Now let's learn the most powerful skill: **safely 
 - Making precise changes without breaking things
 - When to edit vs. when to recreate
 
-## Why Editing Matters
+---
+
+## Part 1: Why Editing Matters
 
 Editing existing files is where AI really shines:
 - Fix bugs in code without rewriting everything
@@ -20,7 +22,7 @@ Editing existing files is where AI really shines:
 
 This is **much better** than recreating files from scratch.
 
-## The Golden Rule
+### The Golden Rule
 
 **ALWAYS read before editing.**
 
@@ -31,36 +33,40 @@ Here's why:
 
 If I try to edit without reading first, I might make wrong assumptions.
 
-## How Editing Works
+---
 
-The Edit tool works by finding and replacing specific text:
-
-**Step 1**: Read the file (so I know what's there)
-**Step 2**: Find the exact text to change (the "old string")
-**Step 3**: Replace it with new text (the "new string")
-**Step 4**: Confirm the change
-
-This is **precise and safe**.
-
-## Let's Try It
+## Part 2: Let's Try It
 
 Remember that hello.txt file we created? Let's edit it.
 
-**Say**: "Read hello.txt then change the message to say 'Hello from Lesson 4!'"
+### Try This
 
-Watch what I do:
-1. Read the file first (following the golden rule)
-2. Find the current text: "Hello from sourdough.ai!"
-3. Replace with: "Hello from Lesson 4!"
-4. Done!
+First, let me read it so I know what's there:
 
-Try it now.
+**Ask me**: "Read hello.txt"
+
+**[PAUSE - Wait for user to ask me to read the file. Read it, show the current content, then continue.]**
 
 ---
 
-## What Just Happened?
+Good! Now I know what's in the file. Let's change it.
 
-I made a **surgical change**:
+### Try This
+
+**Ask me**: "Change the message to say 'Hello from Lesson 4!'"
+
+Watch what I do:
+1. I'll find the current text: "Hello from sourdough.ai!"
+2. Replace it with: "Hello from Lesson 4!"
+3. Confirm the change
+
+**[PAUSE - Wait for user to ask me to change the file. Make the edit, confirm the change, then continue.]**
+
+---
+
+## Part 3: What Just Happened
+
+Perfect! I made a **surgical change**:
 - Only the specific text changed
 - Everything else stayed the same
 - No risk of corrupting the file
@@ -68,39 +74,34 @@ I made a **surgical change**:
 
 This is why editing is powerful.
 
-## Practical Examples
+### Verify the Change
 
-### Example 1: Fixing Code
+Let's confirm it worked.
 
-**You**: "Read script.py and fix the typo on line 15"
+**Try This**: "Read hello.txt again"
 
-**I**:
-- Read the file
-- Find line 15 with the typo
-- Replace just that specific text
-- Everything else untouched
+You'll see the updated content!
 
-### Example 2: Updating Config
+**[PAUSE - Wait for user to ask me to read the file again. Read it, show the new content, then continue.]**
 
-**You**: "In config.yaml, change the port from 8080 to 3000"
+---
 
-**I**:
-- Read config.yaml
-- Find `port: 8080`
-- Replace with `port: 3000`
-- Other settings unchanged
+Nice! You just saw the complete editing cycle: read first, make precise change, verify it worked.
 
-### Example 3: Adding Features
+## Part 4: Practical Examples
 
-**You**: "Add a new function to utils.py that formats dates"
+Now let me show you some real-world uses for editing:
 
-**I**:
-- Read utils.py to see what's there
-- Find the right place to add the function
-- Insert the new function code
-- Preserve existing functions
+**Fixing Code**:
+"Read script.py and fix the typo on line 15" → I'll read the file, find line 15 with the typo, replace just that specific text, everything else untouched
 
-## Being Specific Helps
+**Updating Config**:
+"In config.yaml, change the port from 8080 to 3000" → I'll read config.yaml, find `port: 8080`, replace with `port: 3000`, other settings unchanged
+
+**Adding Features**:
+"Add a new function to utils.py that formats dates" → I'll read utils.py to see what's there, find the right place to add the function, insert the new code, preserve existing functions
+
+### Being Specific Helps
 
 The more specific you are, the better I can edit:
 
@@ -108,7 +109,41 @@ The more specific you are, the better I can edit:
 **Better**: "Fix the error in backup.sh"
 **Best**: "In backup.sh, change the backup directory path to /backup/daily"
 
-## Editing vs. Creating
+### Try This
+
+Let's practice editing. Try one of these:
+
+1. "Add a new line to hello.txt that says '- Updated in Lesson 4'"
+2. "Change the greeting to be more enthusiastic"
+3. Or edit one of the other files you created earlier
+
+Go ahead, try editing something!
+
+**[PAUSE - Wait for user to request an edit. Make the change they ask for, show them what changed, then continue.]**
+
+---
+
+## Part 5: Safety Features
+
+Great! Now you've seen editing in action. Here's what keeps it safe:
+
+When editing, I:
+- **Always read first** (you saw me do this)
+- **Show you what I'm changing** (before and after)
+- **Make precise changes** (not wholesale replacements)
+- **Warn about potential issues** (if the change seems risky)
+
+### What If Something Goes Wrong?
+
+If an edit doesn't work as expected:
+1. **Ask me to revert**: "Change it back to what it was"
+2. **Try again**: Give me more specific instructions
+3. **Read the file**: See what actually happened
+4. **Fix it together**: We'll figure it out
+
+Don't worry—text files are easy to fix.
+
+### Editing vs. Creating
 
 **Edit** when:
 - File already exists
@@ -120,74 +155,23 @@ The more specific you are, the better I can edit:
 - You're starting from scratch
 - You want to replace everything (with a warning)
 
-## Multiple Edits
-
-I can make several changes in one go:
-
-**You**: "In config.yaml, change the port to 3000 and the host to localhost"
-
-**I**: Make both changes, one after the other.
-
-Or you can ask for changes one at a time if you prefer.
-
-## Let's Practice
-
-Let's practice editing. Try these:
-
-1. "Read hello.txt and add '- Updated in Lesson 4' on a new line"
-2. "Change the greeting to be more enthusiastic"
-3. Create a small script first, then ask me to modify it
-
-Go ahead, try editing something!
-
 ---
 
-## Safety Features
+## Wrap-Up: You've Got This
 
-When editing, I:
-- **Always read first** (you'll see me do this)
-- **Show you what I'm changing** (before and after)
-- **Make precise changes** (not wholesale replacements)
-- **Warn about potential issues** (if the change seems risky)
+Excellent work! You've learned how to have AI edit files safely.
 
-## What If Something Goes Wrong?
+### Key Takeaways
 
-If an edit doesn't work as expected:
-1. **Ask me to revert**: "Change it back to what it was"
-2. **Try again**: Give me more specific instructions
-3. **Read the file**: See what actually happened
-4. **Fix it together**: We'll figure it out
+✅ Always read before editing (the golden rule)
+✅ Editing is precise: change exactly what you want
+✅ Editing is safer than recreating files from scratch
+✅ Be specific about what to change
+✅ You can always undo or fix edits
+✅ This is one of AI's most powerful capabilities
+✅ Verify changes by reading the file after editing
 
-Don't worry—text files are easy to fix.
-
-## Advanced: Find and Replace All
-
-Sometimes you want to change **all occurrences** of something:
-
-**You**: "In script.py, rename all instances of 'oldFunctionName' to 'newFunctionName'"
-
-**I**: Use the Edit tool with `replace_all: true` flag to change every occurrence.
-
-This is powerful for refactoring.
-
-## Version Control Tip
-
-If you're using git (we'll cover this later):
-- Changes I make are just like changes you'd make by hand
-- You can commit them, diff them, revert them
-- Use `git diff` to see exactly what changed
-- This makes editing even safer
-
-## Key Takeaways
-
-- Always read before editing (the golden rule)
-- Editing is precise: change exactly what you want
-- Editing is safer than recreating files from scratch
-- Be specific about what to change
-- You can always undo or fix edits
-- This is one of AI's most powerful capabilities
-
-## Real-World Use Cases
+### Real-World Use Cases
 
 People use editing for:
 - **Bug fixes**: Correct errors in code
@@ -196,19 +180,27 @@ People use editing for:
 - **Documentation**: Keep docs up to date
 - **Automation**: Update scripts as needs change
 
-## Questions?
+### Questions?
 
 Common questions:
 - "What if the edit breaks something?" (Read the file after to check, and we can fix it)
 - "Can you edit binary files?" (No, only text files)
 - "Can you edit really large files?" (Yes, though very large files might be truncated when I read them)
 
+**Any other questions?** Ask away!
+
 ---
 
-**Ready for Lesson 5?** Next, we'll explore how I understand and use context across our conversation.
+## Next Steps
 
-Say "next lesson" when ready.
+**Ready for Lesson 5?**
+Next, we'll explore how I understand and use context across our conversation. This is subtle but crucial for effective collaboration.
+
+**Want more practice first?**
+Try editing a few more files to get comfortable. The read→edit→verify cycle becomes natural with practice. Say "continue lessons" whenever you're ready for Lesson 5.
 
 ---
 
 **Progress**: Lesson 4 of 14 complete 🎉
+
+*Remember: Read first, edit precisely, verify after. This pattern keeps you safe!*

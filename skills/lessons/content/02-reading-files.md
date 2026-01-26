@@ -9,7 +9,9 @@ Now that you know how to have a conversation with AI, let's explore one of the m
 - How to point AI to files you want help with
 - What AI can do once it reads a file
 
-## The Power of Reading
+---
+
+## Part 1: The Power of Reading
 
 When I can read files, I can:
 - Explain what code does
@@ -19,37 +21,46 @@ When I can read files, I can:
 - Compare multiple files
 - Debug issues by reading error messages
 
-This is **much more powerful** than you might think.
+This is **much more powerful** than you might think. Instead of you reading a 200-line config file to find one setting, just ask me to find it.
 
-## Let's Try It
+### Try This
 
-I'm going to read a file right now. Watch what happens:
+Let's try reading a file together.
 
-**You say**: "Read the README file in my sourdough.ai directory"
+**Ask me**: "Read the README file in my sourdough.ai directory"
 
-**I do this**:
-1. Use the Read tool to open `~/sourdough.ai/README.md`
-2. Process the entire file contents
-3. Understand the structure and meaning
-4. Respond based on what I found
+Watch what I do—I'll use the Read tool to open and understand the entire file.
 
-Try it now: "Read the README file in ~/sourdough.ai/"
+**[PAUSE - Wait for user to ask me to read the README. Once I read it, acknowledge what I did ("I've read the README file - it's about [brief summary]"), then continue.]**
 
 ---
 
-## What Just Happened?
+## Part 2: What Just Happened
 
-When you asked me to read that file:
+Nice! Here's what happened when you asked me to read that file:
+- I used the Read tool to open `~/sourdough.ai/README.md`
 - I didn't just skim it—I read and understood **all of it**
 - I can now answer questions about anything in that file
-- I can reference specific parts
-- I can explain concepts from it
+- I can reference specific parts and explain concepts from it
 
-Try asking me: "What's the sourdough metaphor about?" or "Explain the architecture described in that README"
+### Try This
 
-## Reading Different File Types
+Now that I've read the README, ask me a question about it:
+- "What's the sourdough metaphor about?"
+- "Explain the architecture"
+- "What does it say about skills?"
 
-I can read:
+Pick one and try it!
+
+**[PAUSE - Wait for user to ask a question about the README. Answer their specific question, then continue.]**
+
+---
+
+Great! See how that works? Once I read a file, I can answer questions about it, explain concepts from it, and reference specific parts.
+
+## Part 3: Different File Types
+
+I can read all kinds of files:
 - **Text files**: .txt, .md, .log
 - **Code**: .py, .js, .sh, .ps1, .java, etc.
 - **Config files**: .yaml, .json, .toml, .env
@@ -58,90 +69,83 @@ I can read:
 
 I can even read **images** and **PDFs** (I'll describe what I see or extract text).
 
-## Practical Examples
+### Try This
 
-### Example 1: Understanding Code
-
-**You**: "Read the install.sh file and explain what it does"
-
-**I**: Read the file, then explain: "This script sets up the sourdough framework by creating directories, setting up Python virtual environment, and creating starter configuration files..."
-
-### Example 2: Finding Information
-
-**You**: "Read my session log from today and tell me what I worked on"
-
-**I**: Read `~/ai-data/logs/sessions/2026-01-26.md` and summarize your activities
-
-### Example 3: Debugging
-
-**You**: "Read the error log and help me figure out what went wrong"
-
-**I**: Read the log, identify the error, explain what it means, and suggest fixes
-
-## Try It Yourself
-
-Let's practice. Try asking me to:
+Let's practice with different types of files. Try asking me to:
 
 1. "Read the getting-started.md file in the docs directory"
 2. "What does it say about installation?"
 3. "Read the hello-world skill and explain how skills work"
 
-Go ahead—try these or similar requests.
+Pick one and give it a try!
+
+**[PAUSE - Wait for user to try reading different files and asking questions. Help them with each request. When they've experimented enough or want to move on, continue.]**
 
 ---
 
-## How to Point Me to Files
+## Part 4: Practical Examples
 
-You can specify files in several ways:
+Good! Now you've seen how reading works. Let me show you some real-world examples of what this enables:
 
-**Absolute path**: `/Users/yourname/sourdough.ai/README.md`
-**Relative path**: `~/sourdough.ai/README.md` (~ means your home directory)
-**Shorthand**: "the README in sourdough.ai" (I'll figure out the full path)
+**Understanding Code**:
+"Read install.sh and explain what it does" → I'll explain the setup process step by step
 
-## Important: Permission & Context
+**Finding Information**:
+"Read my session log from today and tell me what I worked on" → I'll summarize your activities
 
-**Good news**: I can only read files you tell me to read.
+**Debugging**:
+"Read the error log and help me figure out what went wrong" → I'll identify the error and suggest fixes
 
-**That means**:
-- I don't scan your entire system
-- I only see what you point me to
-- Your privacy is protected by default
+### How to Point Me to Files
 
-**You're in control** of what I can access.
+You can specify files several ways:
+- **Absolute path**: `/Users/yourname/sourdough.ai/README.md`
+- **Relative path**: `~/sourdough.ai/README.md` (~ means your home directory)
+- **Shorthand**: "the README in sourdough.ai" (I'll figure out the full path)
 
-## Reading Multiple Files
+---
 
-I can read multiple files in one go:
+## Wrap-Up: You've Got This
 
-**You**: "Read all the markdown files in the docs directory"
-**I**: Will read docs/README.md, docs/getting-started.md, docs/resources.md, etc.
+Great work! You've learned how AI can read and understand files.
 
-This is great for:
-- Understanding a project
-- Comparing configurations
-- Reviewing related documents
+### Key Takeaways
 
-## Key Takeaways
+✅ I can read and understand any text-based file
+✅ You control what I read by pointing me to specific files
+✅ Once I read a file, I can explain it, summarize it, or answer questions about it
+✅ Reading files is the foundation for editing files (next lesson!)
+✅ Your privacy is protected—I only see what you show me
 
-- I can read and understand any text-based file
-- This lets me help with code, configs, docs, logs, and more
-- You control what I read by telling me what files to access
-- Reading files is the foundation for editing files (next lesson!)
-- The more files I read, the more context I have to help you
+### Important to Remember
 
-## Questions?
+**Privacy**: I can only read files you tell me to read. I don't scan your entire system. You're in control of what I can access.
+
+**Multiple files**: I can read several files at once if you need me to compare or understand a project.
+
+**Memory**: I only remember files from our current conversation unless we use session logging (you'll learn about that later).
+
+### Questions?
 
 Common questions at this point:
 - "Can you read binary files?" (Sort of—I can describe them but can't execute them)
 - "Is there a limit to file size?" (Very large files might be truncated, but I'll tell you)
 - "Do you remember files after the conversation ends?" (Only if we log the session)
 
+**Any other questions?** Ask away!
+
 ---
 
-**Ready for Lesson 3?** Next, we'll learn about creating files—having AI write files for you.
+## Next Steps
 
-Say "next lesson" or "continue lessons" when ready.
+**Ready for Lesson 3?**
+Next, we'll learn about creating files—having AI write files for you. This builds directly on reading files.
+
+**Want more practice first?**
+Try reading a few more files to get comfortable. Say "continue lessons" whenever you're ready for Lesson 3.
 
 ---
 
 **Progress**: Lesson 2 of 14 complete 🎉
+
+*Remember: Reading files is a foundational skill. Everything else builds on this!*
