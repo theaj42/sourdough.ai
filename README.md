@@ -52,6 +52,8 @@ The framework loads from both locations. Your personal layer overrides the frame
 
 Works with either [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [Gemini CLI](https://github.com/google-gemini/gemini-cli).
 
+> **First time, or on a work machine?** Skim **[docs/prerequisites.md](docs/prerequisites.md)** before installing — it covers the agent install, the corporate-account auth gotcha (Vertex AI / Bedrock), shell setup, and editors. That's where most setup friction actually lives.
+
 ```bash
 # Clone the starter
 git clone https://github.com/yourusername/sourdough.ai.git ~/sourdough.ai

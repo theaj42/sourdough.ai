@@ -109,6 +109,34 @@ else {
 Write-Host "Setting up for: $agentChoice"
 Write-Host ""
 
+# --- Preflight: warn (don't fail) about missing prerequisites ---
+# See docs/prerequisites.md for the full story.
+$preflightWarn = $false
+function Note-Missing { param($name, $hint) Write-Host "  [missing] $name — $hint" -ForegroundColor Yellow; $script:preflightWarn = $true }
+function Have-Cmd { param($name) [bool](Get-Command $name -ErrorAction SilentlyContinue) }
+
+Write-Host "Checking prerequisites..."
+if (-not (Have-Cmd python) -and -not (Have-Cmd python3)) { Note-Missing "python" "needed for the engine venv (winget install Python.Python.3.12)" }
+if (-not (Have-Cmd git))  { Note-Missing "git" "needed to clone/update (winget install Git.Git)" }
+if (-not (Have-Cmd code) -and -not (Have-Cmd notepad)) { Note-Missing "a text editor" "VS Code (winget install Microsoft.VisualStudioCode)" }
+
+if ($agentChoice -eq "claude" -or $agentChoice -eq "both") {
+    if (-not (Have-Cmd claude)) { Note-Missing "claude (Claude Code)" "npm install -g @anthropic-ai/claude-code" }
+}
+if ($agentChoice -eq "gemini" -or $agentChoice -eq "both") {
+    if (-not (Have-Cmd gemini)) { Note-Missing "gemini (Gemini CLI)" "npm install -g @google/gemini-cli" }
+    if (-not (Have-Cmd gcloud)) { Note-Missing "gcloud" "for Vertex AI auth on corporate accounts (winget install Google.CloudSDK)" }
+}
+if (-not (Have-Cmd gh)) { Write-Host "  [optional] gh (GitHub CLI) not found — handy for push/pull (winget install GitHub.cli)" -ForegroundColor Gray }
+
+if ($preflightWarn) {
+    Write-Host "  -> Some prerequisites are missing. Install help: docs\prerequisites.md" -ForegroundColor Yellow
+    Write-Host "     (Continuing setup anyway — you can install them and re-run later.)" -ForegroundColor Gray
+} else {
+    Write-Host "  All core prerequisites found." -ForegroundColor Green
+}
+Write-Host ""
+
 # Create personal data directory structure
 Write-Host "Creating personal data directory structure..."
 $directories = @(

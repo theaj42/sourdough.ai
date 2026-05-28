@@ -98,6 +98,34 @@ fi
 echo "Setting up for: ${AGENT_CHOICE}"
 echo ""
 
+# --- Preflight: warn (don't fail) about missing prerequisites ---
+# See docs/prerequisites.md for the full story.
+preflight_warn=0
+note_missing() { echo "  [missing] $1 — $2"; preflight_warn=1; }
+
+echo "Checking prerequisites..."
+command -v python3 >/dev/null 2>&1 || note_missing "python3"       "needed for the engine venv (brew install python)"
+command -v git     >/dev/null 2>&1 || note_missing "git"           "needed to clone/update (brew install git)"
+command -v code >/dev/null 2>&1 || command -v nano >/dev/null 2>&1 || command -v vi >/dev/null 2>&1 \
+    || note_missing "a text editor"  "VS Code (brew install --cask visual-studio-code) or nano/vi"
+
+if [[ "$AGENT_CHOICE" == "claude" || "$AGENT_CHOICE" == "both" ]]; then
+    command -v claude >/dev/null 2>&1 || note_missing "claude (Claude Code)" "npm install -g @anthropic-ai/claude-code"
+fi
+if [[ "$AGENT_CHOICE" == "gemini" || "$AGENT_CHOICE" == "both" ]]; then
+    command -v gemini >/dev/null 2>&1 || note_missing "gemini (Gemini CLI)" "npm install -g @google/gemini-cli"
+    command -v gcloud >/dev/null 2>&1 || note_missing "gcloud" "for Vertex AI auth on corporate accounts (brew install --cask google-cloud-sdk)"
+fi
+command -v gh >/dev/null 2>&1 || echo "  [optional] gh (GitHub CLI) not found — handy for push/pull (brew install gh)"
+
+if [[ $preflight_warn -eq 1 ]]; then
+    echo "  -> Some prerequisites are missing. Install help: docs/prerequisites.md"
+    echo "     (Continuing setup anyway — you can install them and re-run later.)"
+else
+    echo "  All core prerequisites found."
+fi
+echo ""
+
 # Create personal data directory structure
 echo "Creating personal data directory structure..."
 mkdir -p "${DATA_DIR}/skills"
