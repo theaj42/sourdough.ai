@@ -28,6 +28,87 @@ if (-not (Test-Path "$FrameworkDir\README.md")) {
     exit 1
 }
 
+# Link every framework skill into a target skills directory (directory junctions, no admin needed).
+function Set-SkillLinks {
+    param([string]$TargetDir)
+    if (-not (Test-Path $TargetDir)) {
+        New-Item -ItemType Directory -Path $TargetDir -Force | Out-Null
+    }
+    $skillDirs = Get-ChildItem -Path "$FrameworkDir\skills" -Directory -ErrorAction SilentlyContinue
+    foreach ($skillDir in $skillDirs) {
+        $skillName = $skillDir.Name
+        $skillMd = Join-Path $skillDir.FullName "SKILL.md"
+        $targetLink = Join-Path $TargetDir $skillName
+        if ((Test-Path $skillMd) -and (-not (Test-Path $targetLink))) {
+            try {
+                cmd /c mklink /J "$targetLink" "$($skillDir.FullName)" 2>$null
+                Write-Host "  Linked skill: $skillName" -ForegroundColor Green
+            }
+            catch {
+                Write-Host "  Could not link skill: $skillName (may need admin privileges)" -ForegroundColor Yellow
+            }
+        }
+    }
+}
+
+# --- Detect and confirm which AI agent (TUI) to set up for ---
+$hasClaude = [bool](Get-Command claude -ErrorAction SilentlyContinue)
+$hasGemini = [bool](Get-Command gemini -ErrorAction SilentlyContinue)
+
+# Honor a non-interactive override: SOURDOUGH_AGENT=claude|gemini|both
+$agentChoice = ""
+switch ("$($env:SOURDOUGH_AGENT)".ToLower()) {
+    "claude" { $agentChoice = "claude" }
+    "gemini" { $agentChoice = "gemini" }
+    "both"   { $agentChoice = "both" }
+    ""       { $agentChoice = "" }
+    default  { Write-Host "Warning: ignoring unknown SOURDOUGH_AGENT='$($env:SOURDOUGH_AGENT)' (expected claude|gemini|both)" -ForegroundColor Yellow }
+}
+
+if ($agentChoice) {
+    Write-Host "Agent selected via SOURDOUGH_AGENT: $agentChoice"
+}
+else {
+    if ($hasClaude -and $hasGemini) {
+        $detected = "both"; Write-Host "Detected both Claude Code and Gemini CLI."
+    }
+    elseif ($hasClaude) {
+        $detected = "claude"; Write-Host "Detected Claude Code."
+    }
+    elseif ($hasGemini) {
+        $detected = "gemini"; Write-Host "Detected Gemini CLI."
+    }
+    else {
+        $detected = "both"; Write-Host "No agent CLI detected on PATH (looked for 'claude' and 'gemini')."
+    }
+
+    # Prompt interactively when possible; otherwise fall back to the detected default.
+    $interactive = $true
+    try { if ([System.Console]::IsInputRedirected) { $interactive = $false } } catch { $interactive = $false }
+
+    if ($interactive) {
+        Write-Host ""
+        Write-Host "Which agent should I set up sourdough for?"
+        Write-Host "  1) Claude Code"
+        Write-Host "  2) Gemini CLI"
+        Write-Host "  3) Both"
+        $replyChoice = Read-Host "Choose [1/2/3] (default: $detected)"
+        switch ($replyChoice) {
+            "1" { $agentChoice = "claude" }
+            "2" { $agentChoice = "gemini" }
+            "3" { $agentChoice = "both" }
+            ""  { $agentChoice = $detected }
+            default { Write-Host "Unrecognized choice; using default: $detected"; $agentChoice = $detected }
+        }
+    }
+    else {
+        $agentChoice = $detected
+        Write-Host "Non-interactive shell; using: $agentChoice (set SOURDOUGH_AGENT to override)"
+    }
+}
+Write-Host "Setting up for: $agentChoice"
+Write-Host ""
+
 # Create personal data directory structure
 Write-Host "Creating personal data directory structure..."
 $directories = @(
@@ -180,51 +261,19 @@ if (-not (Test-Path $venvPath)) {
     }
 }
 
-# Set up skill symlinks for Claude Code
-Write-Host "Setting up Claude Code skills..."
-$claudeSkillsDir = "$HOME\.claude\skills"
-if (-not (Test-Path $claudeSkillsDir)) {
-    New-Item -ItemType Directory -Path $claudeSkillsDir -Force | Out-Null
+# Set up skills (and config) for the chosen agent(s)
+if ($agentChoice -eq "claude" -or $agentChoice -eq "both") {
+    Write-Host "Setting up Claude Code skills..."
+    Set-SkillLinks -TargetDir "$HOME\.claude\skills"
 }
 
-$skillDirs = Get-ChildItem -Path "$FrameworkDir\skills" -Directory -ErrorAction SilentlyContinue
-foreach ($skillDir in $skillDirs) {
-    $skillName = $skillDir.Name
-    $skillMd = Join-Path $skillDir.FullName "SKILL.md"
-    $targetLink = Join-Path $claudeSkillsDir $skillName
-
-    if ((Test-Path $skillMd) -and (-not (Test-Path $targetLink))) {
-        try {
-            # Create directory junction (works without admin on Windows)
-            cmd /c mklink /J "$targetLink" "$($skillDir.FullName)" 2>$null
-            Write-Host "  Linked skill: $skillName" -ForegroundColor Green
-        }
-        catch {
-            Write-Host "  Could not link skill: $skillName (may need admin privileges)" -ForegroundColor Yellow
-        }
-    }
-}
-
-# Set up skill symlinks for Gemini CLI
-Write-Host "Setting up Gemini CLI skills..."
-$geminiSkillsDir = "$HOME\.gemini\skills"
-if (-not (Test-Path $geminiSkillsDir)) {
-    New-Item -ItemType Directory -Path $geminiSkillsDir -Force | Out-Null
-}
-
-foreach ($skillDir in $skillDirs) {
-    $skillName = $skillDir.Name
-    $skillMd = Join-Path $skillDir.FullName "SKILL.md"
-    $targetLink = Join-Path $geminiSkillsDir $skillName
-
-    if ((Test-Path $skillMd) -and (-not (Test-Path $targetLink))) {
-        try {
-            cmd /c mklink /J "$targetLink" "$($skillDir.FullName)" 2>$null
-            Write-Host "  Linked skill: $skillName" -ForegroundColor Green
-        }
-        catch {
-            Write-Host "  Could not link skill: $skillName (may need admin privileges)" -ForegroundColor Yellow
-        }
+if ($agentChoice -eq "gemini" -or $agentChoice -eq "both") {
+    Write-Host "Setting up Gemini CLI skills..."
+    Set-SkillLinks -TargetDir "$HOME\.gemini\skills"
+    # Gemini CLI reads GEMINI.md, not CLAUDE.md — give it the same starter config.
+    if (-not (Test-Path "$DataDir\GEMINI.md")) {
+        Copy-Item -Path "$DataDir\CLAUDE.md" -Destination "$DataDir\GEMINI.md"
+        Write-Host "  Created GEMINI.md (copy of CLAUDE.md for Gemini CLI)" -ForegroundColor Green
     }
 }
 
@@ -233,12 +282,27 @@ Write-Host "Setup complete!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Cyan
 Write-Host "1. Edit $DataDir\CLAUDE.md with your preferences"
-Write-Host "2. Start a Claude Code session in your home directory"
-Write-Host "3. Begin using and customizing your assistant"
+switch ($agentChoice) {
+    "claude" {
+        Write-Host "2. Start Claude Code in your home directory:  cd ~ ; claude"
+        Write-Host "3. Kick off the guided lessons by typing:     Start lessons"
+    }
+    "gemini" {
+        Write-Host "2. Start Gemini CLI in your home directory:   cd ~ ; gemini"
+        Write-Host "3. Kick off the guided lessons by typing:"
+        Write-Host "   Read ~/sourdough.ai/skills/lessons/SKILL.md and run the lessons with me from lesson 1."
+    }
+    "both" {
+        Write-Host "2. Start your agent in your home directory (cd ~ ; claude  -or-  cd ~ ; gemini)"
+        Write-Host "3. Kick off the guided lessons:"
+        Write-Host "   - Claude Code:  type  Start lessons"
+        Write-Host "   - Gemini CLI:   type  Read ~/sourdough.ai/skills/lessons/SKILL.md and run the lessons with me from lesson 1."
+    }
+}
 Write-Host ""
 Write-Host "Your starter culture is ready. Time to feed it." -ForegroundColor Yellow
 Write-Host ""
 
 # Note about symlinks if they failed
 Write-Host "Note: If skill linking failed, you can run this script as Administrator" -ForegroundColor Gray
-Write-Host "or manually copy skill folders to $claudeSkillsDir" -ForegroundColor Gray
+Write-Host "or manually copy skill folders into ~\.claude\skills or ~\.gemini\skills" -ForegroundColor Gray

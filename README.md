@@ -17,7 +17,7 @@ This framework works the same way:
 
 ## What This Is
 
-A framework for building a personalized AI assistant with [Claude Code](https://docs.anthropic.com/en/docs/claude-code). It provides:
+A framework for building a personalized AI assistant with [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [Gemini CLI](https://github.com/google-gemini/gemini-cli). It provides:
 
 - **Engine**: Core agents, integrations, and utilities
 - **Skills**: Reusable capabilities (content creation, news curation, self-improvement)
@@ -50,18 +50,54 @@ The framework loads from both locations. Your personal layer overrides the frame
 
 ## Getting Started
 
+Works with either [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [Gemini CLI](https://github.com/google-gemini/gemini-cli).
+
 ```bash
 # Clone the starter
 git clone https://github.com/yourusername/sourdough.ai.git ~/sourdough.ai
 
-# Run the install script
+# Run the install script (macOS/Linux)
 cd ~/sourdough.ai && ./install.sh
-
-# Create your personal layer
-mkdir -p ~/ai-data/{skills,learning,logs}
-
-# Start a Claude Code session and begin feeding your culture
 ```
+
+On Windows, run `install.ps1` instead:
+
+```powershell
+cd ~\sourdough.ai
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+The installer **detects which agent you have installed** (Claude Code, Gemini CLI, or both) and **asks you to confirm** before setting anything up — it won't decide for you. It then links the skills into the right place and, for Gemini, creates a `GEMINI.md` config (Gemini CLI reads `GEMINI.md`, Claude Code reads `CLAUDE.md`).
+
+To skip the prompt (e.g. for scripted or team rollouts), set the agent ahead of time:
+
+```bash
+# macOS/Linux
+SOURDOUGH_AGENT=gemini ./install.sh    # or: claude | both
+```
+
+```powershell
+# Windows
+$env:SOURDOUGH_AGENT="gemini"; .\install.ps1   # or: claude | both
+```
+
+## Learn the Ropes: Guided Lessons
+
+New to working with an AI assistant? Sourdough ships with **14 hands-on lessons** that teach you by doing — first conversations, reading/editing files, running commands, risk & responsibility, skills, and more. Your progress is saved in `~/ai-data/learning/lesson_progress.yaml`, so you can stop and pick up where you left off.
+
+**Claude Code** — just ask:
+
+```
+Start lessons
+```
+
+**Gemini CLI** — point it at the lessons skill explicitly:
+
+```
+Read ~/sourdough.ai/skills/lessons/SKILL.md and run the lessons with me from lesson 1.
+```
+
+Either way you can jump around — "lesson 5", "what can I learn?", or "continue where I left off" all work.
 
 ## Core Concepts
 

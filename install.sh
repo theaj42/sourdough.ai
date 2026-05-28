@@ -34,6 +34,70 @@ if [[ ! -f "${FRAMEWORK_DIR}/README.md" ]]; then
     exit 1
 fi
 
+# Link every framework skill into a target skills directory.
+link_skills() {
+    local target_dir="$1"
+    mkdir -p "$target_dir"
+    for skill_dir in "${FRAMEWORK_DIR}/skills"/*/; do
+        local skill_name
+        skill_name=$(basename "$skill_dir")
+        if [[ -f "${skill_dir}/SKILL.md" ]] && [[ ! -e "${target_dir}/${skill_name}" ]]; then
+            ln -sf "$skill_dir" "${target_dir}/${skill_name}"
+            echo "  Linked skill: ${skill_name}"
+        fi
+    done
+}
+
+# --- Detect and confirm which AI agent (TUI) to set up for ---
+HAS_CLAUDE=0; HAS_GEMINI=0
+command -v claude >/dev/null 2>&1 && HAS_CLAUDE=1
+command -v gemini >/dev/null 2>&1 && HAS_GEMINI=1
+
+# Honor a non-interactive override: SOURDOUGH_AGENT=claude|gemini|both
+AGENT_CHOICE=""
+case "$(printf '%s' "${SOURDOUGH_AGENT:-}" | tr '[:upper:]' '[:lower:]')" in
+    claude) AGENT_CHOICE="claude";;
+    gemini) AGENT_CHOICE="gemini";;
+    both)   AGENT_CHOICE="both";;
+    "")     AGENT_CHOICE="";;
+    *) echo "Warning: ignoring unknown SOURDOUGH_AGENT='${SOURDOUGH_AGENT}' (expected claude|gemini|both)";;
+esac
+
+if [[ -n "$AGENT_CHOICE" ]]; then
+    echo "Agent selected via SOURDOUGH_AGENT: ${AGENT_CHOICE}"
+else
+    if [[ $HAS_CLAUDE -eq 1 && $HAS_GEMINI -eq 1 ]]; then
+        DETECTED="both"; echo "Detected both Claude Code and Gemini CLI."
+    elif [[ $HAS_CLAUDE -eq 1 ]]; then
+        DETECTED="claude"; echo "Detected Claude Code."
+    elif [[ $HAS_GEMINI -eq 1 ]]; then
+        DETECTED="gemini"; echo "Detected Gemini CLI."
+    else
+        DETECTED="both"; echo "No agent CLI detected on PATH (looked for 'claude' and 'gemini')."
+    fi
+
+    if [[ -t 0 ]]; then
+        echo ""
+        echo "Which agent should I set up sourdough for?"
+        echo "  1) Claude Code"
+        echo "  2) Gemini CLI"
+        echo "  3) Both"
+        read -r -p "Choose [1/2/3] (default: ${DETECTED}): " REPLY_CHOICE
+        case "${REPLY_CHOICE}" in
+            1) AGENT_CHOICE="claude";;
+            2) AGENT_CHOICE="gemini";;
+            3) AGENT_CHOICE="both";;
+            "") AGENT_CHOICE="${DETECTED}";;
+            *) echo "Unrecognized choice; using default: ${DETECTED}"; AGENT_CHOICE="${DETECTED}";;
+        esac
+    else
+        AGENT_CHOICE="${DETECTED}"
+        echo "Non-interactive shell; using: ${AGENT_CHOICE} (set SOURDOUGH_AGENT to override)"
+    fi
+fi
+echo "Setting up for: ${AGENT_CHOICE}"
+echo ""
+
 # Create personal data directory structure
 echo "Creating personal data directory structure..."
 mkdir -p "${DATA_DIR}/skills"
@@ -167,34 +231,45 @@ if [[ ! -d "${FRAMEWORK_DIR}/engine/venv" ]]; then
     deactivate
 fi
 
-# Set up skill symlinks for Claude Code
-echo "Setting up Claude Code skills..."
-mkdir -p "${HOME}/.claude/skills"
-for skill_dir in "${FRAMEWORK_DIR}/skills"/*/; do
-    skill_name=$(basename "$skill_dir")
-    if [[ -f "${skill_dir}/SKILL.md" ]] && [[ ! -e "${HOME}/.claude/skills/${skill_name}" ]]; then
-        ln -sf "$skill_dir" "${HOME}/.claude/skills/${skill_name}"
-        echo "  Linked skill: ${skill_name}"
-    fi
-done
+# Set up skills (and config) for the chosen agent(s)
+if [[ "$AGENT_CHOICE" == "claude" || "$AGENT_CHOICE" == "both" ]]; then
+    echo "Setting up Claude Code skills..."
+    link_skills "${HOME}/.claude/skills"
+fi
 
-# Set up skill symlinks for Gemini CLI
-echo "Setting up Gemini CLI skills..."
-mkdir -p "${HOME}/.gemini/skills"
-for skill_dir in "${FRAMEWORK_DIR}/skills"/*/; do
-    skill_name=$(basename "$skill_dir")
-    if [[ -f "${skill_dir}/SKILL.md" ]] && [[ ! -e "${HOME}/.gemini/skills/${skill_name}" ]]; then
-        ln -sf "$skill_dir" "${HOME}/.gemini/skills/${skill_name}"
-        echo "  Linked skill: ${skill_name}"
+if [[ "$AGENT_CHOICE" == "gemini" || "$AGENT_CHOICE" == "both" ]]; then
+    echo "Setting up Gemini CLI skills..."
+    link_skills "${HOME}/.gemini/skills"
+    # Gemini CLI reads GEMINI.md, not CLAUDE.md — give it its own copy of the
+    # starter config. (Copy, not symlink, so behavior matches the Windows
+    # installer and so editing one file doesn't silently mutate the other.)
+    if [[ ! -e "${DATA_DIR}/GEMINI.md" ]] && [[ -f "${DATA_DIR}/CLAUDE.md" ]]; then
+        cp "${DATA_DIR}/CLAUDE.md" "${DATA_DIR}/GEMINI.md"
+        echo "  Created GEMINI.md (copy of CLAUDE.md — keep the two in sync if you edit them)"
     fi
-done
+fi
 
 echo ""
 echo "Setup complete!"
 echo ""
 echo "Next steps:"
 echo "1. Edit ${DATA_DIR}/CLAUDE.md with your preferences"
-echo "2. Start a Claude Code session in your home directory"
-echo "3. Begin using and customizing your assistant"
+case "$AGENT_CHOICE" in
+    claude)
+        echo "2. Start Claude Code in your home directory:  cd ~ && claude"
+        echo "3. Kick off the guided lessons by typing:     Start lessons"
+        ;;
+    gemini)
+        echo "2. Start Gemini CLI in your home directory:   cd ~ && gemini"
+        echo "3. Kick off the guided lessons by typing:"
+        echo "   Read ~/sourdough.ai/skills/lessons/SKILL.md and run the lessons with me from lesson 1."
+        ;;
+    both)
+        echo "2. Start your agent in your home directory (cd ~ && claude  —or—  cd ~ && gemini)"
+        echo "3. Kick off the guided lessons:"
+        echo "   - Claude Code:  type  Start lessons"
+        echo "   - Gemini CLI:   type  Read ~/sourdough.ai/skills/lessons/SKILL.md and run the lessons with me from lesson 1."
+        ;;
+esac
 echo ""
 echo "🍞 Your starter culture is ready. Time to feed it."
